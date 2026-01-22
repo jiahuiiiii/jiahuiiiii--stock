@@ -55,7 +55,12 @@
   },
   "buttons": {
     "createPortfolio": "Create Portfolio",
-    "addHolding": "Add Holding"
+    "addHolding": "Add Holding",
+    "saveChanges": "Save Changes",
+    "resetDefaults": "Reset Defaults",
+    "addTier": "Add Tier",
+    "unlock": "Unlock",
+    "lock": "Lock"
   },
   "modals": {
     "portfolio": {
@@ -75,6 +80,10 @@
       "update": "Edit Diary",
       "remove": "Remove Diary",
       "removeConfirmation": "Remove {{symbol}} from portfolio? This action cannot be undone."
+    },
+    "resetToDefaults": {
+      "title": "Reset to Defaults",
+      "description": "Are you sure you want to reset all scoring settings to their default values? This action cannot be undone."
     }
   },
   "inputs": {
@@ -106,7 +115,8 @@
     "currentPe": "Current PE",
     "avgPe": "10-Year Average PE",
     "peRatio": "PE Ratio",
-    "cagr": "CAGR"
+    "cagr": "CAGR",
+    "value": "Value"
   },
   "placeholders": {
     "portfolioName": "My Portfolio",
@@ -243,6 +253,21 @@
         "title": "Price-to-Sales",
         "desc": "Calculate price-to-sales ratio"
       }
+    }
+  },
+  "settings": {
+    "metrics": {
+      "lowerIsBetter": "Lower is better",
+      "higherIsBetter": "Higher is better",
+      "pts": "pts"
+    },
+    "cashFlow": {
+      "title": "Cash Flow",
+      "description": "Profit/Loss + Inflow/Outflow",
+      "profitInflow": "Profit + Net Inflow",
+      "profitOutflow": "Profit + Net Outflow",
+      "lossInflow": "Loss + Net Inflow",
+      "lossOutflow": "Loss + Net Outflow"
     }
   }
 }

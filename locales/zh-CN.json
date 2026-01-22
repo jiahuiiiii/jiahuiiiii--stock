@@ -55,7 +55,12 @@
   },
   "buttons": {
     "createPortfolio": "创建投资组合",
-    "addHolding": "添加持仓"
+    "addHolding": "添加持仓",
+    "saveChanges": "保存更改",
+    "resetDefaults": "重置默认值",
+    "addTier": "添加层级",
+    "unlock": "解锁",
+    "lock": "锁定"
   },
   "modals": {
     "portfolio": {
@@ -75,6 +80,10 @@
       "update": "编辑日记",
       "remove": "移除日记",
       "removeConfirmation": "确定要删除「{{name}}」日记吗？此操作无法撤销。"
+    },
+    "resetToDefaults": {
+      "title": "重置为默认值",
+      "description": "确定要将所有评分设置重置为默认值吗？此操作无法撤销。"
     }
   },
   "inputs": {
@@ -106,7 +115,8 @@
     "currentPe": "当前市盈率",
     "avgPe": "10年平均市盈率",
     "peRatio": "市盈率",
-    "cagr": "复合年增长率"
+    "cagr": "复合年增长率",
+    "value": "数值"
   },
   "placeholders": {
     "portfolioName": "我的投资组合",
@@ -243,6 +253,21 @@
         "title": "市销率",
         "desc": "计算市销率"
       }
+    }
+  },
+  "settings": {
+    "metrics": {
+      "lowerIsBetter": "越低越好",
+      "higherIsBetter": "越高越好",
+      "pts": "分"
+    },
+    "cashFlow": {
+      "title": "现金流",
+      "description": "盈亏 + 流入/流出",
+      "profitInflow": "盈利 + 净流入",
+      "profitOutflow": "盈利 + 净流出",
+      "lossInflow": "亏损 + 净流入",
+      "lossOutflow": "亏损 + 净流出"
     }
   }
 }

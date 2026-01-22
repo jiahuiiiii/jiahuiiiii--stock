@@ -409,6 +409,224 @@ export const schemas = {
       indexes: [],
       system: false
     }
+  },
+  calculator_logs: {
+    schema: z.object({
+      ticker: z.string(),
+      name: z.string(),
+      exchange: z.string(),
+      date: z.string(),
+      values_and_scores: z.any(),
+      total_score: z.number()
+    }),
+    raw: {
+      listRule: '@request.auth.id != ""',
+      viewRule: '@request.auth.id != ""',
+      createRule: '@request.auth.id != ""',
+      updateRule: '@request.auth.id != ""',
+      deleteRule: '@request.auth.id != ""',
+      name: 'jiahuiiiii___stock__calculator_logs',
+      type: 'base',
+      fields: [
+        {
+          autogeneratePattern: '[a-z0-9]{15}',
+          hidden: false,
+          max: 15,
+          min: 15,
+          name: 'id',
+          pattern: '^[a-z0-9]+$',
+          presentable: false,
+          primaryKey: true,
+          required: true,
+          system: true,
+          type: 'text'
+        },
+        {
+          autogeneratePattern: '',
+          hidden: false,
+          max: 0,
+          min: 0,
+          name: 'ticker',
+          pattern: '',
+          presentable: false,
+          primaryKey: false,
+          required: false,
+          system: false,
+          type: 'text'
+        },
+        {
+          autogeneratePattern: '',
+          hidden: false,
+          max: 0,
+          min: 0,
+          name: 'name',
+          pattern: '',
+          presentable: false,
+          primaryKey: false,
+          required: false,
+          system: false,
+          type: 'text'
+        },
+        {
+          autogeneratePattern: '',
+          hidden: false,
+          max: 0,
+          min: 0,
+          name: 'exchange',
+          pattern: '',
+          presentable: false,
+          primaryKey: false,
+          required: false,
+          system: false,
+          type: 'text'
+        },
+        {
+          hidden: false,
+          max: '',
+          min: '',
+          name: 'date',
+          presentable: false,
+          required: false,
+          system: false,
+          type: 'date'
+        },
+        {
+          hidden: false,
+          maxSize: 0,
+          name: 'values_and_scores',
+          presentable: false,
+          required: false,
+          system: false,
+          type: 'json'
+        },
+        {
+          hidden: false,
+          max: null,
+          min: null,
+          name: 'total_score',
+          onlyInt: false,
+          presentable: false,
+          required: false,
+          system: false,
+          type: 'number'
+        }
+      ],
+      indexes: [],
+      system: false
+    }
+  },
+  analyzer_logs: {
+    schema: z.object({
+      ticker: z.string(),
+      stock_exchange: z.string(),
+      company_name: z.string(),
+      date: z.string(),
+      values: z.any(),
+      scores: z.any(),
+      quantitative: z.any()
+    }),
+    raw: {
+      listRule: '@request.auth.id != ""',
+      viewRule: '@request.auth.id != ""',
+      createRule: '@request.auth.id != ""',
+      updateRule: '@request.auth.id != ""',
+      deleteRule: '@request.auth.id != ""',
+      name: 'jiahuiiiii___stock__analyzer_logs',
+      type: 'base',
+      fields: [
+        {
+          autogeneratePattern: '[a-z0-9]{15}',
+          hidden: false,
+          max: 15,
+          min: 15,
+          name: 'id',
+          pattern: '^[a-z0-9]+$',
+          presentable: false,
+          primaryKey: true,
+          required: true,
+          system: true,
+          type: 'text'
+        },
+        {
+          autogeneratePattern: '',
+          hidden: false,
+          max: 0,
+          min: 0,
+          name: 'ticker',
+          pattern: '',
+          presentable: false,
+          primaryKey: false,
+          required: false,
+          system: false,
+          type: 'text'
+        },
+        {
+          autogeneratePattern: '',
+          hidden: false,
+          max: 0,
+          min: 0,
+          name: 'stock_exchange',
+          pattern: '',
+          presentable: false,
+          primaryKey: false,
+          required: false,
+          system: false,
+          type: 'text'
+        },
+        {
+          autogeneratePattern: '',
+          hidden: false,
+          max: 0,
+          min: 0,
+          name: 'company_name',
+          pattern: '',
+          presentable: false,
+          primaryKey: false,
+          required: false,
+          system: false,
+          type: 'text'
+        },
+        {
+          hidden: false,
+          max: '',
+          min: '',
+          name: 'date',
+          presentable: false,
+          required: false,
+          system: false,
+          type: 'date'
+        },
+        {
+          hidden: false,
+          maxSize: 0,
+          name: 'values',
+          presentable: false,
+          required: false,
+          system: false,
+          type: 'json'
+        },
+        {
+          hidden: false,
+          maxSize: 0,
+          name: 'scores',
+          presentable: false,
+          required: false,
+          system: false,
+          type: 'json'
+        },
+        {
+          hidden: false,
+          maxSize: 0,
+          name: 'quantitative',
+          presentable: false,
+          required: false,
+          system: false,
+          type: 'json'
+        }
+      ],
+      indexes: [],
+      system: false
+    }
   }
 }
 

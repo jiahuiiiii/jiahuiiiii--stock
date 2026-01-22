@@ -55,7 +55,12 @@
   },
   "buttons": {
     "createPortfolio": "Cipta Portfolio",
-    "addHolding": "Tambah Pegangan"
+    "addHolding": "Tambah Pegangan",
+    "saveChanges": "Simpan Perubahan",
+    "resetDefaults": "Set Semula Lalai",
+    "addTier": "Tambah Peringkat",
+    "unlock": "Buka Kunci",
+    "lock": "Kunci"
   },
   "modals": {
     "portfolio": {
@@ -75,6 +80,10 @@
       "update": "Edit Diari",
       "remove": "Buang Diari",
       "removeConfirmation": "Buang {{symbol}} dari portfolio? Tindakan ini tidak boleh dibatalkan."
+    },
+    "resetToDefaults": {
+      "title": "Set Semula ke Lalai",
+      "description": "Adakah anda pasti mahu menetapkan semula semua tetapan pemarkahan kepada nilai lalai? Tindakan ini tidak boleh dibatalkan."
     }
   },
   "inputs": {
@@ -106,7 +115,8 @@
     "currentPe": "PE Semasa",
     "avgPe": "Purata PE 10 Tahun",
     "peRatio": "Nisbah PE",
-    "cagr": "CAGR"
+    "cagr": "CAGR",
+    "value": "Nilai"
   },
   "placeholders": {
     "portfolioName": "Portfolio Saya",
@@ -243,6 +253,21 @@
         "title": "Harga-ke-Jualan",
         "desc": "Kira nisbah harga-ke-jualan"
       }
+    }
+  },
+  "settings": {
+    "metrics": {
+      "lowerIsBetter": "Lebih rendah lebih baik",
+      "higherIsBetter": "Lebih tinggi lebih baik",
+      "pts": "mata"
+    },
+    "cashFlow": {
+      "title": "Aliran Tunai",
+      "description": "Untung/Rugi + Aliran Masuk/Keluar",
+      "profitInflow": "Untung + Aliran Masuk Bersih",
+      "profitOutflow": "Untung + Aliran Keluar Bersih",
+      "lossInflow": "Rugi + Aliran Masuk Bersih",
+      "lossOutflow": "Rugi + Aliran Keluar Bersih"
     }
   }
 }
