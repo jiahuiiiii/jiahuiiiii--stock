@@ -6,13 +6,14 @@ export default {
     '/': lazy(() => import('@/pages/Dashboard')),
     '/watchlist': lazy(() => import('@/pages/Watchlist')),
     '/portfolio': lazy(() => import('@/pages/Portfolio')),
+    '/portfolio/:portfolioId': lazy(() => import('@/pages/PortfolioHolding')),
     '/diary': lazy(() => import('@/pages/Diary')),
     '/chart/:symbolAndName': lazy(() => import('@/pages/StockChart')),
-    '/analyzer/toolbox': lazy(() => import('@/pages/Analyzer/Toolbox')),
-    '/analyzer/gdp-prc': lazy(() => import('@/pages/Analyzer/GdpPrc')),
-    '/analyzer/logbook': lazy(() => import('@/pages/Analyzer/Logbook')),
-    '/analyzer/settings': lazy(() => import('@/pages/Analyzer/Settings')),
-    '/analyzer/guide': lazy(() => import('@/pages/Analyzer/Guide'))
+    '/analyzer/toolbox': lazy(() => import('@/pages/Analyzer/pages/Toolbox')),
+    '/analyzer/gdp-prc': lazy(() => import('@/pages/Analyzer/pages/Analyzer')),
+    '/analyzer/logbook': lazy(() => import('@/pages/Analyzer/pages/Logbook')),
+    '/analyzer/settings': lazy(() => import('@/pages/Analyzer/pages/Settings')),
+    '/analyzer/guide': lazy(() => import('@/pages/Analyzer/pages/Guide'))
   },
   subsection: [
     { label: 'Dashboard', icon: 'tabler:dashboard', path: '' },

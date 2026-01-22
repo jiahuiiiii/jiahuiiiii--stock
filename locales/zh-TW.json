@@ -9,7 +9,187 @@
     "analyzer": "分析器",
     "logbook": "日誌本",
     "settings": "設定",
-    "guide": "指南"
+    "guide": "指南",
+    "diary": "日記"
+  },
+  "subsectionsTitleAndDesc": {
+    "dashboard": {
+      "title": "儀表板",
+      "description": "追蹤股票、管理關注列表並構建您的投資組合。"
+    },
+    "watchlist": {
+      "title": "關注列表",
+      "description": "監控您關注的股票及其即時表現。"
+    },
+    "portfolio": {
+      "title": "投資組合",
+      "description": "管理您的持倉並追蹤投資表現。"
+    },
+    "toolbox": {
+      "title": "分析器工具箱",
+      "description": "計算股票分析的關鍵財務指標。"
+    },
+    "analyzer": {
+      "title": "分析器",
+      "description": "使用冷眼投資法分析股票。"
+    },
+    "logbook": {
+      "title": "分析日誌本",
+      "description": "記錄並回顧您的股票分析歷史。"
+    },
+    "settings": {
+      "title": "設定",
+      "description": "配置評分閾值和分析參數。"
+    },
+    "guide": {
+      "title": "投資指南",
+      "description": "學習冷眼投資哲學和策略。"
+    },
+    "diary": {
+      "title": "日記",
+      "description": "記錄您的投資思考和市場觀察。"
+    }
+  },
+  "titles": {
+    "portfolio": "投資組合"
+  },
+  "buttons": {
+    "createPortfolio": "建立投資組合",
+    "addHolding": "新增持倉",
+    "saveChanges": "儲存變更",
+    "resetDefaults": "重置預設值",
+    "addTier": "新增層級",
+    "unlock": "解鎖",
+    "lock": "鎖定",
+    "proceed": "繼續",
+    "skip": "跳過",
+    "back": "返回",
+    "viewVerdict": "查看結果",
+    "fetchFromLogbook": "從日誌匯入",
+    "saveToLogbook": "儲存到日誌"
+  },
+  "modals": {
+    "portfolio": {
+      "create": "建立投資組合",
+      "update": "更新投資組合",
+      "delete": "刪除投資組合",
+      "deleteConfirmation": "確定要刪除「{{name}}」投資組合嗎？此操作無法撤銷。"
+    },
+    "holding": {
+      "create": "新增持倉",
+      "update": "編輯持倉",
+      "remove": "移除持倉",
+      "removeConfirmation": "從投資組合中移除 {{symbol}}？此操作無法撤銷。"
+    },
+    "diary": {
+      "create": "新增日記",
+      "update": "編輯日記",
+      "remove": "移除日記",
+      "removeConfirmation": "確定要刪除「{{name}}」日記嗎？此操作無法撤銷。"
+    },
+    "resetToDefaults": {
+      "title": "重置為預設值",
+      "description": "確定要將所有評分設定重置為預設值嗎？此操作無法撤銷。"
+    },
+    "proceedWithCaution": {
+      "title": "謹慎繼續",
+      "description": "並非所有定性標準都已滿足。確定要繼續下一階段嗎？"
+    },
+    "deleteAnalysis": {
+      "title": "刪除分析",
+      "description": "確定要刪除 {{ticker}} 的分析嗎？",
+      "confirm": "刪除"
+    },
+    "deleteCalculation": {
+      "title": "刪除計算",
+      "description": "確定要刪除 {{ticker}} 的計算嗎？",
+      "confirm": "刪除"
+    },
+    "saveCalculation": "儲存計算"
+  },
+  "inputs": {
+    "portfolioName": "投資組合名稱",
+    "symbol": "股票代碼",
+    "companyName": "公司名稱",
+    "shares": "股數",
+    "avgCost": "平均成本價",
+    "dateAdded": "新增日期",
+    "compare": "對比",
+    "timeRange": "時間範圍",
+    "closingTime": "收盤時間",
+    "date": "日期",
+    "diaryTitle": "日記標題",
+    "feeling": "感覺",
+    "notes": "筆記",
+    "image": "圖片",
+    "currentPrice": "目前價格",
+    "annualDividend": "年度股息",
+    "startValue": "起始值",
+    "endValue": "結束值",
+    "years": "年數",
+    "netIncome": "淨收入",
+    "totalRevenue": "總營收",
+    "marketCap": "市值（或價格）",
+    "totalSales": "總銷售額（或每股銷售額）",
+    "eps": "每股盈餘（EPS）",
+    "equity": "股東權益",
+    "currentPe": "目前本益比",
+    "avgPe": "10年平均本益比",
+    "peRatio": "本益比",
+    "cagr": "複合年成長率",
+    "value": "數值",
+    "profitMargin": "利潤率 (%)",
+    "roe": "股東權益報酬率 (%)",
+    "cashFlow": "現金流",
+    "dividendYield": "股息率 (%)",
+    "tenYearAvgPe": "10年平均本益比（用於本益比折扣檢查）",
+    "stockTicker": "股票代碼",
+    "stockExchange": "股票交易所"
+  },
+  "placeholders": {
+    "portfolioName": "我的投資組合",
+    "symbol": "AAPL",
+    "companyName": "蘋果"
+  },
+  "widgets": {
+    "totalValue": "總市值",
+    "totalCost": "總成本",
+    "totalPL": "總盈虧",
+    "dayChange": "日漲跌",
+    "performanceVs": "對比 <benchmark></benchmark> 表現"
+  },
+  "table": {
+    "symbol": "代碼",
+    "addedOn": "新增日期",
+    "shares": "股數",
+    "avgCost": "平均成本",
+    "currentPrice": "現價",
+    "marketValue": "市值",
+    "pl": "盈虧",
+    "plPercent": "盈虧 %",
+    "actions": "操作"
+  },
+  "portfolio": {
+    "holdingsCount": "{{count}} 只持倉",
+    "holdingsValuing": "{{count}} 只持倉，價值 ${{value}}"
+  },
+  "errors": {
+    "portfolio": {
+      "createFailed": "建立投資組合失敗",
+      "renameFailed": "重新命名投資組合失敗",
+      "deleteFailed": "刪除投資組合失敗"
+    },
+    "holding": {
+      "createFailed": "新增持倉失敗",
+      "updateFailed": "更新持倉失敗",
+      "removeFailed": "移除持倉失敗"
+    },
+    "analyzer": {
+      "saveFailed": "儲存日誌失敗，請重試。"
+    }
+  },
+  "common": {
+    "loading": "載入中..."
   },
   "empty": {
     "stock": {
@@ -27,6 +207,382 @@
     "portfolio": {
       "title": "投資組合為空",
       "description": "從儀表板搜尋並添加股票以在此處追蹤。"
+    },
+    "diary": {
+      "title": "日記為空",
+      "description": "新增日記以開始！"
+    },
+    "holding": {
+      "title": "投資組合中沒有持倉",
+      "description": "新增您的第一個股票持倉，開始構建您的虛擬投資組合。"
+    },
+    "savedAnalysisLog": {
+      "title": "還沒有保存的分析日誌",
+      "description": "完成分析並保存以在此處查看。"
+    },
+    "savedCalculatorLog": {
+      "title": "還沒有保存的計算日誌",
+      "description": "使用工具箱中的計算器並點擊右下角的\"保存\"按鈕以保存您的計算。"
+    }
+  },
+  "diary": {
+    "sidebar": {
+      "allEntries": "所有條目",
+      "moods": "心情"
+    },
+    "headers": {
+      "all": "全部",
+      "allEntries": "所有條目"
+    },
+    "moods": {
+      "bullish": "看漲",
+      "neutral": "中立",
+      "bearish": "看跌",
+      "excited": "興奮",
+      "anxious": "焦慮"
+    }
+  },
+  "items": {
+    "diary": "日記條目"
+  },
+  "calculators": {
+    "categories": {
+      "gdp": "GDP - 創造財富",
+      "prc": "PRC - 維持財富",
+      "supplementary": "補充檢查"
+    },
+    "items": {
+      "cagr": {
+        "title": "複合年成長率",
+        "desc": "支援負數，k/M/B後綴"
+      },
+      "dy": {
+        "title": "股息率",
+        "desc": "價格和股息的單位需一致（美元/美分）"
+      },
+      "pe": {
+        "title": "本益比",
+        "desc": "本益比和每股盈餘的單位需一致（美元/美分）"
+      },
+      "margin": {
+        "title": "利潤率",
+        "desc": "支援負數，k/M/B後綴"
+      },
+      "roe": {
+        "title": "股東權益報酬率",
+        "desc": "支援負數，k/M/B後綴"
+      },
+      "peg": {
+        "title": "祖魯法則",
+        "desc": "檢查PEG比率是否符合祖魯法則（PEG ≤ 1.0）"
+      },
+      "peDiscount": {
+        "title": "歷史本益比折扣",
+        "desc": "將當前本益比與歷史平均值比較以獲得安全邊際"
+      },
+      "ps": {
+        "title": "市銷率",
+        "desc": "計算市銷率"
+      }
+    }
+  },
+  "settings": {
+    "metrics": {
+      "lowerIsBetter": "越低越好",
+      "higherIsBetter": "越高越好",
+      "pts": "分"
+    },
+    "cashFlow": {
+      "title": "現金流",
+      "description": "盈虧 + 流入/流出",
+      "profitInflow": "獲利 + 淨流入",
+      "profitOutflow": "獲利 + 淨流出",
+      "lossInflow": "虧損 + 淨流入",
+      "lossOutflow": "虧損 + 淨流出"
+    }
+  },
+  "analyzer": {
+    "phase": "階段",
+    "score": "得分：",
+    "pass": "通過",
+    "fail": "未通過",
+    "total": "總分",
+    "points": "分",
+    "zuluPass": "Zulu通過 (PEG ≤ 1.0)",
+    "undervalued": "低估 (PE ≥25% 折扣)",
+    "phases": {
+      "sleepStrategyGate": {
+        "name": "睡眠策略關卡",
+        "description": "審查這些定性因素（建議）。即使未全部滿足，您也可以繼續。"
+      },
+      "quantitativeEntry": {
+        "name": "定量資料輸入",
+        "description": "輸入關鍵財務指標。如果日誌中有資料，您可以在此處自動填充。"
+      },
+      "verdict": {
+        "name": "最終結果",
+        "description": ""
+      }
+    },
+    "qualitative": {
+      "valueChain": {
+        "label": "價值鏈",
+        "description": "公司是否有穩定的需求 → 收入 → 利潤流？"
+      },
+      "dividendPolicy": {
+        "label": "股息政策",
+        "description": "是否有持續派發股息的歷史？"
+      },
+      "management": {
+        "label": "管理層誠信",
+        "description": "管理層是否誠實？（無會計醜聞）"
+      },
+      "moat": {
+        "label": "競爭護城河",
+        "description": "公司是否有明確的競爭優勢？"
+      }
+    },
+    "metrics": {
+      "gCagr": "G: 複合年成長率 (%)",
+      "dDividendYield": "D: 股息率 (%)",
+      "pPeRatio": "P: 本益比",
+      "pProfitMargin": "P: 利潦率 (%)",
+      "rRoe": "R: 淨資產報酬率 (%)",
+      "cCashFlow": "C: 現金流",
+      "gdp": "GDP",
+      "prc": "PRC"
+    },
+    "verdicts": {
+      "pass": {
+        "label": "強烈候選",
+        "description": "兩項得分均 >= 50 - 強烈候選"
+      },
+      "neutral": {
+        "label": "觀察關注",
+        "description": "結果混合 - 觀察關注"
+      },
+      "fail": {
+        "label": "不符合條件",
+        "description": "不符合標準 - 拒絕 ;-;"
+      }
+    }
+  },
+  "guide": {
+    "tabs": {
+      "philosophy": "投資哲學",
+      "glossary": "術語表",
+      "howto": "使用方法",
+      "limitations": "局限性"
+    },
+    "qualitative": {
+      "valueChain": {
+        "title": "價值鏈",
+        "desc": "商業模式是否可持續？"
+      },
+      "dividendPolicy": {
+        "title": "股息政策",
+        "desc": "管理層是否分紅？"
+      },
+      "management": {
+        "title": "管理層",
+        "desc": "領導層是否值得信任？"
+      },
+      "moat": {
+        "title": "護城河",
+        "desc": "競爭對手能輕易複製嗎？"
+      }
+    },
+    "coldEye": {
+      "title": "冷眼投資哲學",
+      "intro": "\"冷眼\"方法強調基於基本面分析的紀律性、無情緒化投資。投資者應該使用定量指標來評估公司，而不是追隨市場炒作或情緒化決策。",
+      "keyPrinciples": "核心原則：",
+      "gdpScore": {
+        "title": "GDP評分",
+        "desc": "通過成長(複合年成長率)、股息和價格(本益比)衡量財富創造"
+      },
+      "prcScore": {
+        "title": "PRC評分",
+        "desc": "通過利潤率、淨資產報酬率和現金流衡量財富可持續性"
+      },
+      "threshold": {
+        "title": "得分 > 100",
+        "desc": "投資考慮的最低門檻（A級）"
+      }
+    },
+    "sleepStrategy": {
+      "title": "睡眠策略",
+      "intro": "在分析任何數字之前，問問自己：\"持有這只股票我能安心入睡嗎？\"這需要通過定性關卡："
+    },
+    "opportunityCost": {
+      "title": "機會成本",
+      "desc": "每個投資決策都有機會成本。投資一只股票，就放棄了其他股票的回報。冷眼方法確保您只投資於符合高標準的公司，減少錯誤配置的機會。"
+    },
+    "glossary": {
+      "cagr": {
+        "fullName": "複合年成長率",
+        "description": "衡量投資在指定期間內的平均年成長率，平滑波動性。"
+      },
+      "peRatio": {
+        "fullName": "本益比",
+        "description": "顯示投資者願意為每美元收益支付多少。一般來說，越低越好。"
+      },
+      "pegRatio": {
+        "fullName": "本益成長比",
+        "description": "根據成長調整本益比。PEG ≤ 1.0 表明股票相對於其成長率可能被低估（祖魯原則）。"
+      },
+      "dividendYield": {
+        "fullName": "年度股息報酬率",
+        "description": "僅來自股息的百分比報酬。較高的收益率表明更好的收入潛力。"
+      },
+      "netProfitMargin": {
+        "fullName": "淨利潤率",
+        "description": "顯示公司從每美元收入中保留多少利潤。較高的利潤率表明更好的效率。"
+      },
+      "roe": {
+        "fullName": "淨資產報酬率",
+        "description": "衡量公司使用股東資本產生利潤的效率。"
+      },
+      "psRatio": {
+        "fullName": "市銷率",
+        "description": "適用於低收益或負收益的公司。必須結合利潤率分析。"
+      }
+    },
+    "howto": {
+      "stepByStep": "分步分析",
+      "tipsTitle": "更好分析的技巧",
+      "findingData": {
+        "title": "查找財務數據",
+        "intro": "要有效使用此分析器，您需要訪問公司財務報表。以下是查找它們的地方：",
+        "annualReports": {
+          "title": "年度報告",
+          "desc": "訪問公司的投資者關係頁面。關鍵部分：",
+          "incomeStatement": "利潤表：淨利潤、收入、每股收益",
+          "balanceSheet": "資產負債表：股東權益",
+          "cashFlowStatement": "現金流量表"
+        },
+        "dataProviders": {
+          "title": "數據提供商",
+          "yahooFinance": "免費關鍵統計數據",
+          "morningstar": "詳細分析",
+          "secEdgar": "美國官方文件"
+        }
+      },
+      "steps": {
+        "1": {
+          "title": "通過定性關卡",
+          "desc": "在繼續之前驗證公司滿足所有4項標準"
+        },
+        "2": {
+          "title": "計算5年複合年成長率",
+          "desc": "比較5年前與今天的淨利潤"
+        },
+        "3": {
+          "title": "找出當前股息率",
+          "desc": "年度股息 ÷ 當前股價"
+        },
+        "4": {
+          "title": "檢查本益比",
+          "desc": "當前價格 ÷ 過去12個月每股收益"
+        },
+        "5": {
+          "title": "評估利潤率",
+          "desc": "淨利潤 ÷ 總收入"
+        },
+        "6": {
+          "title": "計算淨資產報酬率",
+          "desc": "淨收入 ÷ 股東權益"
+        },
+        "7": {
+          "title": "評估現金流",
+          "desc": "公司是否盈利？現金流是否為正？"
+        },
+        "8": {
+          "title": "查看您的得分",
+          "desc": "總分應超過100才能獲得A級"
+        }
+      },
+      "tips": {
+        "calculator": "使用工具箱計算器進行快速檢查",
+        "compare": "比較同一行業的多家公司",
+        "trends": "關注5-10年趨勢，而不僅僅是當前值",
+        "zulu": "使用祖魯原則篩選成長股",
+        "discount": "檢查歷史本益比折扣以發現價值機會",
+        "logbook": "將分析儲存到您的日誌中"
+      }
+    },
+    "limitations": {
+      "blindSpots": {
+        "title": "盲點與局限性",
+        "techGrowth": {
+          "title": "對科技股和成長股不友好",
+          "intro": "當前模型可能會不公正地懲罰高成長公司：",
+          "dividendIssues": {
+            "title": "股息問題",
+            "desc": "優秀的科技公司（如早期的亞馬遜或特斯拉）通常將利潤再投資而不是支付股息，導致低分。"
+          },
+          "peIssues": {
+            "title": "本益比問題",
+            "desc": "優質成長股通常以PE > 30x交易。這個模型只會給它們5分。"
+          },
+          "result": "結果：您可能會錯過整個科技牛市，最終只持有銀行、房地產或製造業等傳統行業。"
+        },
+        "laggingIndicators": {
+          "title": "滯後指標",
+          "desc": "複合成長(CAGR)和淨資產報酬率依賴於過去的數據。如果一個行業正面臨顛覆（例如膠片相機vs數位相機），完美的過去得分並不能保證未來的成功。此模型無法評估未來的商業模式。"
+        },
+        "simplifiedCashFlow": {
+          "title": "簡化的現金流",
+          "desc": "該模型給\"盈利+淨流入\"40分。然而，擴張中的公司可能由於大量投資（研發、工廠）而現金流為負。這不一定是壞事；這可能是爆發前的平靜。"
+        }
+      },
+      "targetAudience": {
+        "title": "適合誰？",
+        "suitableFor": {
+          "title": "適合",
+          "items": [
+            "尋求穩定的長期持有者（\"穩穩的幸福\"）",
+            "不想每天看盤的投資者",
+            "在傳統市場（如馬來西亞交易所）識別藍籌股或二線股"
+          ]
+        },
+        "notSuitableFor": {
+          "title": "不適合",
+          "items": [
+            "針對科技巨頭的激進投資者",
+            "高成長行業（人工智慧、生物技術）",
+            "短期交易或投機"
+          ]
+        },
+        "source": {
+          "title": "來源：《股票投資終極解決方案》",
+          "desc": "核心理念：價值投資，攻守兼備。以成長為主，價值為輔。"
+        }
+      }
+    }
+  },
+  "logbook": {
+    "tabs": {
+      "analyses": "股票分析",
+      "calculators": "計算"
+    },
+    "labels": {
+      "gdp": "GDP",
+      "prc": "PRC",
+      "total": "總分",
+      "cagr": "CAGR",
+      "dy": "股息率",
+      "pe": "本益比",
+      "margin": "利潦率",
+      "roe": "ROE",
+      "cashFlow": "現金流",
+      "dividendYield": "股息率",
+      "peRatio": "本益比",
+      "profitMargin": "利潦率",
+      "na": "無"
+    },
+    "tags": {
+      "zuluPass": "Zulu通過",
+      "undervalued": "低估"
     }
   }
 }
