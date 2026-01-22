@@ -15,10 +15,18 @@ export const list = forge
   .description('List all calculator logs')
   .input({})
   .callback(async ({ pb }) => {
-    return pb.getFullList
-      .collection('calculator_logs')
-      .sort(['-date'])
-      .execute()
+    return (
+      await pb.getFullList
+        .collection('calculator_logs')
+        .sort(['-date'])
+        .execute()
+    ).map(log => ({
+      ...log,
+      values_and_scores: log.values_and_scores as Record<
+        string,
+        { value?: number; score: number }
+      >
+    }))
   })
 
 export const create = forge

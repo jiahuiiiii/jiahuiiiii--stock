@@ -1,26 +1,48 @@
 import { Widget } from 'lifeforge-ui'
+import { useTranslation } from 'react-i18next'
 import { usePersonalization } from 'shared'
 import COLORS from 'tailwindcss/colors'
 
-import { TIPS } from '../constants'
+const TIP_KEYS = [
+  'calculator',
+  'compare',
+  'trends',
+  'zulu',
+  'discount',
+  'logbook'
+] as const
+
+const TIP_ICONS = {
+  calculator: 'tabler:calculator',
+  compare: 'tabler:chart-dots',
+  trends: 'tabler:history',
+  zulu: 'tabler:zoom-check',
+  discount: 'tabler:discount',
+  logbook: 'tabler:notebook'
+}
 
 function AnalysisTips() {
+  const { t } = useTranslation('apps.jiahuiiiii$stock')
   const { derivedThemeColor } = usePersonalization()
 
   return (
     <Widget
       icon="tabler:bulb"
       iconColor={COLORS.yellow[500]}
-      title="Tips for Better Analysis"
+      title={t('guide.howto.tipsTitle')}
     >
       <div className="grid gap-3 sm:grid-cols-2">
-        {TIPS.map(item => (
+        {TIP_KEYS.map(key => (
           <Widget
-            key={item.tip}
+            key={key}
             className="component-bg-lighter"
-            icon={item.icon}
+            icon={TIP_ICONS[key]}
             iconColor={derivedThemeColor}
-            title={<div className="text-bg-500 font-normal">{item.tip}</div>}
+            title={
+              <div className="text-bg-500 font-normal">
+                {t(`guide.howto.tips.${key}`)}
+              </div>
+            }
           />
         ))}
       </div>

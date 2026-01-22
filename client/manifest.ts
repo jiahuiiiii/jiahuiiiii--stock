@@ -10,13 +10,9 @@ export default {
     '/diary': lazy(() => import('@/pages/Diary')),
     '/chart/:symbolAndName': lazy(() => import('@/pages/StockChart')),
     '/analyzer/toolbox': lazy(() => import('@/pages/Analyzer/pages/Toolbox')),
-    '/analyzer/gdp-prc': lazy(
-      () => import('@/pages/Analyzer/pages/Analyzer/GdpPrc')
-    ),
+    '/analyzer/gdp-prc': lazy(() => import('@/pages/Analyzer/pages/Analyzer')),
     '/analyzer/logbook': lazy(() => import('@/pages/Analyzer/pages/Logbook')),
-    '/analyzer/settings': lazy(
-      () => import('@/pages/Analyzer/pages/Settings')
-    ),
+    '/analyzer/settings': lazy(() => import('@/pages/Analyzer/pages/Settings')),
     '/analyzer/guide': lazy(() => import('@/pages/Analyzer/pages/Guide'))
   },
   subsection: [

@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import {
   Card,
@@ -7,31 +8,68 @@ import {
   TagChip,
   useModalStore
 } from 'lifeforge-ui'
+import _ from 'lodash'
+import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
+import type { InferOutput } from 'shared'
 import COLORS from 'tailwindcss/colors'
 
-import { useAnalyzerStore } from '../store'
-import type { StockLog } from '../types'
-import { CASH_FLOW_OPTIONS } from '@/pages/Analyzer/constants/cashFlow'
-import { getVerdict, VERDICTS } from '@/pages/Analyzer/constants/verdict'
+import { VERDICTS, getVerdict } from '@/pages/Analyzer/constants/verdict'
+import forgeAPI from '@/utils/forgeAPI'
 
-function AnalysisItem({ log }: { log: StockLog }) {
+type AnalyzerLogItem = InferOutput<
+  typeof forgeAPI.analyzer.logs.analyzer.list
+>[number]
+
+function AnalysisItem({ log }: { log: AnalyzerLogItem }) {
+  const { t } = useTranslation('apps.jiahuiiiii$stock')
+
+  const queryClient = useQueryClient()
+
   const { open } = useModalStore()
 
-  const deleteLog = useAnalyzerStore(s => s.deleteLog)
+  const deleteMutation = useMutation(
+    forgeAPI.analyzer.logs.analyzer.remove
+      .input({
+        id: log.id
+      })
+      .mutationOptions({
+        onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: forgeAPI.analyzer.logs.analyzer.list.key
+          })
+        },
+        onError: error => {
+          console.error('Failed to delete analysis', error)
+          toast.error(t('errors.analyzer.deleteFailed'))
+        }
+      })
+  )
 
-  const verdict = getVerdict(log.gdpScore, log.prcScore)
+  const verdict = getVerdict(log.scores.gdp, log.scores.prc)
 
-  const cashFlowLabel =
-    CASH_FLOW_OPTIONS.find(o => o.value === log.cashFlowOption)?.label ??
-    log.cashFlowOption
+  const totalScore = Object.values(log.scores).reduce((a, b) => a + b, 0)
+
+  const LABELS_MAP = {
+    cagr: { key: 'cagr', format: (v: number) => `${v.toFixed(1)}%` },
+    dy: { key: 'dy', format: (v: number) => `${v.toFixed(1)}%` },
+    pe: { key: 'pe', format: (v: number) => `${v.toFixed(1)}x` },
+    margin: { key: 'margin', format: (v: number) => `${v.toFixed(1)}%` },
+    roe: { key: 'roe', format: (v: number) => `${v.toFixed(1)}%` },
+    cashFlow: {
+      key: 'cashFlow',
+      format: () =>
+        t(`settings.cashFlow.${_.camelCase(log.values.cashFlow as string)}`)
+    }
+  } as const
 
   return (
     <Card className="flex flex-col">
       <div className="mb-3 flex items-start justify-between">
         <div>
           <div className="text-xl font-semibold">{log.ticker}</div>
-          {log.companyName && (
-            <div className="text-custom-500">{log.companyName}</div>
+          {log.company_name && (
+            <div className="text-custom-500">{log.company_name}</div>
           )}
           <div className="text-bg-500 mt-1 text-sm">
             {dayjs(log.date).format('DD MMM YYYY')}
@@ -42,7 +80,7 @@ function AnalysisItem({ log }: { log: StockLog }) {
             className="text-xs!"
             color={VERDICTS[verdict].color}
             icon={VERDICTS[verdict].icon}
-            label={`${verdict} (${log.totalScore})`}
+            label={`${verdict} (${totalScore})`}
           />
           <ContextMenu
             classNames={{
@@ -52,13 +90,17 @@ function AnalysisItem({ log }: { log: StockLog }) {
             <ContextMenuItem
               dangerous
               icon="tabler:trash"
-              label="Delete"
+              label={t('modals.deleteAnalysis.confirm')}
               onClick={() => {
                 open(ConfirmationModal, {
-                  title: 'Delete Analysis',
-                  description: `Are you sure you want to delete this analysis for ${log.ticker}?`,
-                  confirmButtonText: 'Delete',
-                  onConfirm: async () => deleteLog(log.id)
+                  title: t('modals.deleteAnalysis.title'),
+                  description: t('modals.deleteAnalysis.description', {
+                    ticker: log.ticker
+                  }),
+                  confirmButtonText: t('modals.deleteAnalysis.confirm'),
+                  onConfirm: async () => {
+                    await deleteMutation.mutateAsync({})
+                  }
                 })
               }}
             />
@@ -70,59 +112,56 @@ function AnalysisItem({ log }: { log: StockLog }) {
         <div className="grid grid-cols-3 gap-2 text-center">
           <div
             className={`rounded-lg p-2 ${
-              log.gdpScore >= 50
+              log.scores.gdp >= 50
                 ? 'bg-green-500/10 text-green-500'
                 : 'bg-red-500/10 text-red-500'
             }`}
           >
-            <div className="text-sm font-medium">GDP</div>
-            <div className="text-lg font-semibold">{log.gdpScore}</div>
+            <div className="text-sm font-medium">{t('logbook.labels.gdp')}</div>
+            <div className="text-lg font-semibold">{log.scores.gdp}</div>
           </div>
           <div
             className={`rounded-lg p-2 ${
-              log.prcScore >= 50
+              log.scores.prc >= 50
                 ? 'bg-green-500/10 text-green-500'
                 : 'bg-red-500/10 text-red-500'
             }`}
           >
-            <div className="text-sm font-medium">PRC</div>
-            <div className="text-lg font-semibold">{log.prcScore}</div>
+            <div className="text-sm font-medium">{t('logbook.labels.prc')}</div>
+            <div className="text-lg font-semibold">{log.scores.prc}</div>
           </div>
           <div className="bg-bg-100 dark:bg-bg-800 rounded-lg p-2">
-            <div className="text-bg-500 text-sm">Total</div>
-            <div className="text-lg font-semibold">{log.totalScore}</div>
+            <div className="text-bg-500 text-sm">
+              {t('logbook.labels.total')}
+            </div>
+            <div className="text-lg font-semibold">{totalScore}</div>
           </div>
         </div>
 
         <div className="space-y-1">
-          {Object.entries({
-            CAGR: `${log.cagrValue.toFixed(1)}%`,
-            'D/Y': `${log.dyValue.toFixed(1)}%`,
-            PE: `${log.peValue.toFixed(1)}x`,
-            Margin: `${log.marginValue.toFixed(1)}%`,
-            ROE: `${log.roeValue.toFixed(1)}%`,
-            'Cash Flow': cashFlowLabel
-          }).map(([label, value]) => (
-            <div key={label} className="flex justify-between">
-              <span className="text-bg-500">{label}</span>
-              <span>{value}</span>
+          {(Object.keys(LABELS_MAP) as (keyof typeof LABELS_MAP)[]).map(key => (
+            <div key={key} className="flex justify-between">
+              <span className="text-bg-500">{t(`logbook.labels.${key}`)}</span>
+              <span>
+                {LABELS_MAP[key].format(Number(log.values[key]) || 0)}
+              </span>
             </div>
           ))}
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {log.passedZulu && (
+          {log.quantitative.passedZulu && (
             <TagChip
               color={COLORS.green[500]}
               icon="tabler:check"
-              label="Zulu Pass"
+              label={t('logbook.tags.zuluPass')}
             />
           )}
-          {log.undervaluedPe && (
+          {log.quantitative.undervaluedPe && (
             <TagChip
               color={COLORS.green[500]}
               icon="tabler:check"
-              label="Undervalued"
+              label={t('logbook.tags.undervalued')}
             />
           )}
           <TagChip

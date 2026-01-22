@@ -83,11 +83,23 @@ export function AnalyzerSettingsProvider({
 export function useAnalyzerSettings() {
   const context = useContext(AnalyzerSettingsContext)
 
+  if (!context.settings) {
+    throw new Error(
+      'useAnalyzerSettings must be used within an AnalyzerSettingsProvider'
+    )
+  }
+
   return context.settings
 }
 
 export function useCashFlowScores() {
   const context = useContext(AnalyzerSettingsContext)
+
+  if (!context.cashFlowScores) {
+    throw new Error(
+      'useCashFlowScores must be used within an AnalyzerSettingsProvider'
+    )
+  }
 
   return context.cashFlowScores
 }

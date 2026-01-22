@@ -1,32 +1,44 @@
 import { Widget } from 'lifeforge-ui'
+import { useTranslation } from 'react-i18next'
 import { usePersonalization } from 'shared'
 import COLORS from 'tailwindcss/colors'
 
-import QUALITATIVE_CRITERIA from '../constants'
+const QUALITATIVE_IDS = [
+  'valueChain',
+  'dividendPolicy',
+  'management',
+  'moat'
+] as const
+
+const QUALITATIVE_ICONS = {
+  valueChain: 'tabler:link',
+  dividendPolicy: 'tabler:coin',
+  management: 'tabler:user-check',
+  moat: 'tabler:shield'
+}
 
 function SleepStrategy() {
+  const { t } = useTranslation('apps.jiahuiiiii$stock')
   const { derivedThemeColor } = usePersonalization()
 
   return (
     <Widget
       icon="tabler:moon"
       iconColor={COLORS.purple[500]}
-      title="The Sleep Strategy"
+      title={t('guide.sleepStrategy.title')}
     >
-      <p className="text-bg-500">
-        Before analyzing any numbers, ask yourself: &quot;Can I sleep well at
-        night owning this stock?&quot; This requires passing the qualitative
-        gate:
-      </p>
+      <p className="text-bg-500">{t('guide.sleepStrategy.intro')}</p>
       <div className="grid gap-3 sm:grid-cols-2">
-        {QUALITATIVE_CRITERIA.map(item => (
+        {QUALITATIVE_IDS.map(id => (
           <Widget
-            key={item.title}
+            key={id}
             className="component-bg-lighter"
-            description={<p className="text-base">{item.desc}</p>}
-            icon={item.icon}
+            description={
+              <p className="text-base">{t(`guide.qualitative.${id}.desc`)}</p>
+            }
+            icon={QUALITATIVE_ICONS[id]}
             iconColor={derivedThemeColor}
-            title={item.title}
+            title={t(`guide.qualitative.${id}.title`)}
           />
         ))}
       </div>

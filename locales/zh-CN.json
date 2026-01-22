@@ -60,7 +60,13 @@
     "resetDefaults": "重置默认值",
     "addTier": "添加层级",
     "unlock": "解锁",
-    "lock": "锁定"
+    "lock": "锁定",
+    "proceed": "继续",
+    "skip": "跳过",
+    "back": "返回",
+    "viewVerdict": "查看结果",
+    "fetchFromLogbook": "从日志导入",
+    "saveToLogbook": "保存到日志"
   },
   "modals": {
     "portfolio": {
@@ -84,7 +90,22 @@
     "resetToDefaults": {
       "title": "重置为默认值",
       "description": "确定要将所有评分设置重置为默认值吗？此操作无法撤销。"
-    }
+    },
+    "proceedWithCaution": {
+      "title": "谨慎继续",
+      "description": "并非所有定性标准都已满足。确定要继续下一阶段吗？"
+    },
+    "deleteAnalysis": {
+      "title": "删除分析",
+      "description": "确定要删除 {{ticker}} 的分析吗？",
+      "confirm": "删除"
+    },
+    "deleteCalculation": {
+      "title": "删除计算",
+      "description": "确定要删除 {{ticker}} 的计算吗？",
+      "confirm": "删除"
+    },
+    "saveCalculation": "保存计算"
   },
   "inputs": {
     "portfolioName": "投资组合名称",
@@ -116,7 +137,14 @@
     "avgPe": "10年平均市盈率",
     "peRatio": "市盈率",
     "cagr": "复合年增长率",
-    "value": "数值"
+    "value": "数值",
+    "profitMargin": "利润率 (%)",
+    "roe": "股东权益回报率 (%)",
+    "cashFlow": "现金流",
+    "dividendYield": "股息率 (%)",
+    "tenYearAvgPe": "10年平均市盈率（用于市盈率折扣检查）",
+    "stockTicker": "股票代码",
+    "stockExchange": "股票交易所"
   },
   "placeholders": {
     "portfolioName": "我的投资组合",
@@ -155,6 +183,9 @@
       "createFailed": "添加持仓失败",
       "updateFailed": "更新持仓失败",
       "removeFailed": "移除持仓失败"
+    },
+    "analyzer": {
+      "saveFailed": "保存日志失败，请重试。"
     }
   },
   "common": {
@@ -268,6 +299,290 @@
       "profitOutflow": "盈利 + 净流出",
       "lossInflow": "亏损 + 净流入",
       "lossOutflow": "亏损 + 净流出"
+    }
+  },
+  "analyzer": {
+    "phase": "阶段",
+    "score": "得分：",
+    "pass": "通过",
+    "fail": "未通过",
+    "total": "总分",
+    "points": "分",
+    "zuluPass": "Zulu通过 (PEG ≤ 1.0)",
+    "undervalued": "低估 (PE ≥25% 折扣)",
+    "phases": {
+      "sleepStrategyGate": {
+        "name": "睡眠策略关卡",
+        "description": "审查这些定性因素（建议）。即使未全部满足，您也可以继续。"
+      },
+      "quantitativeEntry": {
+        "name": "定量数据输入",
+        "description": "输入关键财务指标。如果日志中有数据，您可以在此处自动填充。"
+      },
+      "verdict": {
+        "name": "最终结果",
+        "description": ""
+      }
+    },
+    "qualitative": {
+      "valueChain": {
+        "label": "价值链",
+        "description": "公司是否有稳定的需求 → 收入 → 利润流？"
+      },
+      "dividendPolicy": {
+        "label": "股息政策",
+        "description": "是否有持续派发股息的历史？"
+      },
+      "management": {
+        "label": "管理层诚信",
+        "description": "管理层是否诚实？（无会计丑闻）"
+      },
+      "moat": {
+        "label": "竞争护城河",
+        "description": "公司是否有明确的竞争优势？"
+      }
+    },
+    "metrics": {
+      "gCagr": "G: 复合年增长率 (%)",
+      "dDividendYield": "D: 股息率 (%)",
+      "pPeRatio": "P: 市盈率",
+      "pProfitMargin": "P: 利润率 (%)",
+      "rRoe": "R: 净资产收益率 (%)",
+      "cCashFlow": "C: 现金流",
+      "gdp": "GDP",
+      "prc": "PRC"
+    },
+    "verdicts": {
+      "pass": {
+        "label": "强烈候选",
+        "description": "两项得分均 >= 50 - 强烈候选"
+      },
+      "neutral": {
+        "label": "观察关注",
+        "description": "结果混合 - 观察关注"
+      },
+      "fail": {
+        "label": "不符合条件",
+        "description": "不符合标准 - 拒绝 ;-;"
+      }
+    }
+  },
+  "guide": {
+    "tabs": {
+      "philosophy": "投资哲学",
+      "glossary": "术语表",
+      "howto": "使用方法",
+      "limitations": "局限性"
+    },
+    "qualitative": {
+      "valueChain": {
+        "title": "价值链",
+        "desc": "商业模式是否可持续？"
+      },
+      "dividendPolicy": {
+        "title": "股息政策",
+        "desc": "管理层是否分红？"
+      },
+      "management": {
+        "title": "管理层",
+        "desc": "领导层是否值得信任？"
+      },
+      "moat": {
+        "title": "护城河",
+        "desc": "竞争对手能轻易复制吗？"
+      }
+    },
+    "coldEye": {
+      "title": "冷眼投资哲学",
+      "intro": "\"冷眼\"方法强调基于基本面分析的纪律性、无情绪化投资。投资者应该使用定量指标来评估公司，而不是追随市场炒作或情绪化决策。",
+      "keyPrinciples": "核心原则：",
+      "gdpScore": {
+        "title": "GDP评分",
+        "desc": "通过成长(复合年增长率)、股息和价格(市盈率)衡量财富创造"
+      },
+      "prcScore": {
+        "title": "PRC评分",
+        "desc": "通过利润率、净资产收益率和现金流衡量财富可持续性"
+      },
+      "threshold": {
+        "title": "得分 > 100",
+        "desc": "投资考虑的最低门槛（A级）"
+      }
+    },
+    "sleepStrategy": {
+      "title": "睡眠策略",
+      "intro": "在分析任何数字之前，问问自己：\"持有这只股票我能安心入睡吗？\"这需要通过定性关卡："
+    },
+    "opportunityCost": {
+      "title": "机会成本",
+      "desc": "每个投资决策都有机会成本。投资一只股票，就放弃了其他股票的回报。冷眼方法确保您只投资于符合高标准的公司，减少错误配置的机会。"
+    },
+    "glossary": {
+      "cagr": {
+        "fullName": "复合年增长率",
+        "description": "衡量投资在指定期间内的平均年增长率，平滑波动性。"
+      },
+      "peRatio": {
+        "fullName": "市盈率",
+        "description": "显示投资者愿意为每美元收益支付多少。一般来说，越低越好。"
+      },
+      "pegRatio": {
+        "fullName": "市盈增长比率",
+        "description": "根据增长调整市盈率。PEG ≤ 1.0 表明股票相对于其增长率可能被低估（祖鲁原则）。"
+      },
+      "dividendYield": {
+        "fullName": "年度股息回报率",
+        "description": "仅来自股息的百分比回报。较高的收益率表明更好的收入潜力。"
+      },
+      "netProfitMargin": {
+        "fullName": "净利润率",
+        "description": "显示公司从每美元收入中保留多少利润。较高的利润率表明更好的效率。"
+      },
+      "roe": {
+        "fullName": "净资产收益率",
+        "description": "衡量公司使用股东资本产生利润的效率。"
+      },
+      "psRatio": {
+        "fullName": "市销率",
+        "description": "适用于低收益或负收益的公司。必须结合利润率分析。"
+      }
+    },
+    "howto": {
+      "stepByStep": "分步分析",
+      "tipsTitle": "更好分析的技巧",
+      "findingData": {
+        "title": "查找财务数据",
+        "intro": "要有效使用此分析器，您需要访问公司财务报表。以下是查找它们的地方：",
+        "annualReports": {
+          "title": "年度报告",
+          "desc": "访问公司的投资者关系页面。关键部分：",
+          "incomeStatement": "利润表：净利润、收入、每股收益",
+          "balanceSheet": "资产负债表：股东权益",
+          "cashFlowStatement": "现金流量表"
+        },
+        "dataProviders": {
+          "title": "数据提供商",
+          "yahooFinance": "免费关键统计数据",
+          "morningstar": "详细分析",
+          "secEdgar": "美国官方文件"
+        }
+      },
+      "steps": {
+        "1": {
+          "title": "通过定性关卡",
+          "desc": "在继续之前验证公司满足所有4项标准"
+        },
+        "2": {
+          "title": "计算5年复合年增长率",
+          "desc": "比较5年前与今天的净利润"
+        },
+        "3": {
+          "title": "找出当前股息率",
+          "desc": "年度股息 ÷ 当前股价"
+        },
+        "4": {
+          "title": "检查市盈率",
+          "desc": "当前价格 ÷ 过去12个月每股收益"
+        },
+        "5": {
+          "title": "评估利润率",
+          "desc": "净利润 ÷ 总收入"
+        },
+        "6": {
+          "title": "计算净资产收益率",
+          "desc": "净收入 ÷ 股东权益"
+        },
+        "7": {
+          "title": "评估现金流",
+          "desc": "公司是否盈利？现金流是否为正？"
+        },
+        "8": {
+          "title": "查看您的得分",
+          "desc": "总分应超过100才能获得A级"
+        }
+      },
+      "tips": {
+        "calculator": "使用工具箱计算器进行快速检查",
+        "compare": "比较同一行业的多家公司",
+        "trends": "关注5-10年趋势，而不仅仅是当前值",
+        "zulu": "使用祖鲁原则筛选成长股",
+        "discount": "检查历史市盈率折扣以发现价值机会",
+        "logbook": "将分析保存到您的日志中"
+      }
+    },
+    "limitations": {
+      "blindSpots": {
+        "title": "盲点与局限性",
+        "techGrowth": {
+          "title": "对科技股和成长股不友好",
+          "intro": "当前模型可能会不公正地惩罚高增长公司：",
+          "dividendIssues": {
+            "title": "股息问题",
+            "desc": "优秀的科技公司（如早期的亚马逊或特斯拉）通常将利润再投资而不是支付股息，导致低分。"
+          },
+          "peIssues": {
+            "title": "市盈率问题",
+            "desc": "优质成长股通常以PE > 30x交易。这个模型只会给它们5分。"
+          },
+          "result": "结果：您可能会错过整个科技牛市，最终只持有银行、房地产或制造业等传统行业。"
+        },
+        "laggingIndicators": {
+          "title": "滞后指标",
+          "desc": "复合增长(CAGR)和净资产收益率依赖于过去的数据。如果一个行业正面临颠覆（例如胶片相机vs数码相机），完美的过去得分并不能保证未来的成功。此模型无法评估未来的商业模式。"
+        },
+        "simplifiedCashFlow": {
+          "title": "简化的现金流",
+          "desc": "该模型给\"盈利+净流入\"40分。然而，扩张中的公司可能由于大量投资（研发、工厂）而现金流为负。这不一定是坏事；这可能是爆发前的平静。"
+        }
+      },
+      "targetAudience": {
+        "title": "适合谁？",
+        "suitableFor": {
+          "title": "适合",
+          "items": [
+            "寻求稳定的长期持有者（\"稳稳的幸福\"）",
+            "不想每天看盘的投资者",
+            "在传统市场（如马来西亚交易所）识别蓝筹股或二线股"
+          ]
+        },
+        "notSuitableFor": {
+          "title": "不适合",
+          "items": [
+            "针对科技巨头的激进投资者",
+            "高增长行业（人工智能、生物技术）",
+            "短期交易或投机"
+          ]
+        },
+        "source": {
+          "title": "来源：《股票投资终极解决方案》",
+          "desc": "核心理念：价值投资，攻守兼备。以成长为主，价值为辅。"
+        }
+      }
+    }
+  },
+  "logbook": {
+    "tabs": {
+      "analyses": "股票分析",
+      "calculators": "计算"
+    },
+    "labels": {
+      "gdp": "GDP",
+      "prc": "PRC",
+      "total": "总分",
+      "cagr": "CAGR",
+      "dy": "股息率",
+      "pe": "市盈率",
+      "margin": "利润率",
+      "roe": "ROE",
+      "cashFlow": "现金流",
+      "dividendYield": "股息率",
+      "peRatio": "市盈率",
+      "profitMargin": "利润率",
+      "na": "无"
+    },
+    "tags": {
+      "zuluPass": "Zulu通过",
+      "undervalued": "低估"
     }
   }
 }

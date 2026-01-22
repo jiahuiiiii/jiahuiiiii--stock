@@ -60,7 +60,13 @@
     "resetDefaults": "Reset Defaults",
     "addTier": "Add Tier",
     "unlock": "Unlock",
-    "lock": "Lock"
+    "lock": "Lock",
+    "proceed": "Proceed",
+    "skip": "Skip",
+    "back": "Back",
+    "viewVerdict": "View Verdict",
+    "fetchFromLogbook": "Fetch from Logbook",
+    "saveToLogbook": "Save to Logbook"
   },
   "modals": {
     "portfolio": {
@@ -84,7 +90,22 @@
     "resetToDefaults": {
       "title": "Reset to Defaults",
       "description": "Are you sure you want to reset all scoring settings to their default values? This action cannot be undone."
-    }
+    },
+    "proceedWithCaution": {
+      "title": "Proceed with Caution",
+      "description": "Not all qualitative criteria are met. Are you sure you want to proceed to the next phase?"
+    },
+    "deleteAnalysis": {
+      "title": "Delete Analysis",
+      "description": "Are you sure you want to delete this analysis for {{ticker}}?",
+      "confirm": "Delete"
+    },
+    "deleteCalculation": {
+      "title": "Delete Calculation",
+      "description": "Are you sure you want to delete this calculation for {{ticker}}?",
+      "confirm": "Delete"
+    },
+    "saveCalculation": "Save Calculation"
   },
   "inputs": {
     "portfolioName": "Portfolio Name",
@@ -116,7 +137,14 @@
     "avgPe": "10-Year Average PE",
     "peRatio": "PE Ratio",
     "cagr": "CAGR",
-    "value": "Value"
+    "value": "Value",
+    "profitMargin": "Profit Margin (%)",
+    "roe": "ROE (%)",
+    "cashFlow": "Cash Flow",
+    "dividendYield": "Dividend Yield (%)",
+    "tenYearAvgPe": "10-Year Average PE (for PE Discount check)",
+    "stockTicker": "Stock Ticker",
+    "stockExchange": "Stock Exchange"
   },
   "placeholders": {
     "portfolioName": "My Portfolio",
@@ -155,6 +183,13 @@
       "createFailed": "Failed to add holding",
       "updateFailed": "Failed to update holding",
       "removeFailed": "Failed to remove holding"
+    },
+    "analyzer": {
+      "saveFailed": "Failed to save log. Please try again.",
+      "deleteFailed": "Failed to delete analysis"
+    },
+    "calculator": {
+      "deleteFailed": "Failed to delete calculator log."
     }
   },
   "common": {
@@ -268,6 +303,290 @@
       "profitOutflow": "Profit + Net Outflow",
       "lossInflow": "Loss + Net Inflow",
       "lossOutflow": "Loss + Net Outflow"
+    }
+  },
+  "analyzer": {
+    "phase": "Phase",
+    "score": "Score:",
+    "pass": "Pass",
+    "fail": "Fail",
+    "total": "Total",
+    "points": "Points",
+    "zuluPass": "Zulu Pass (PEG ≤ 1.0)",
+    "undervalued": "Undervalued (PE ≥25% discount)",
+    "phases": {
+      "sleepStrategyGate": {
+        "name": "Sleep Strategy Gate",
+        "description": "Review these qualitative factors (recommended). You may proceed even if not all criteria are met."
+      },
+      "quantitativeEntry": {
+        "name": "Quantitative Data Entry",
+        "description": "Input key financial metrics. If the data is available in your log book, you can auto-fill it here."
+      },
+      "verdict": {
+        "name": "The Verdict",
+        "description": ""
+      }
+    },
+    "qualitative": {
+      "valueChain": {
+        "label": "Value Chain",
+        "description": "Does the company have stable needs → Revenue → Profit flow?"
+      },
+      "dividendPolicy": {
+        "label": "Dividend Policy",
+        "description": "Is there a consistent history of paying dividends?"
+      },
+      "management": {
+        "label": "Management Integrity",
+        "description": "Is the management honest? (No accounting scandals)"
+      },
+      "moat": {
+        "label": "Competitive Moat",
+        "description": "Does the company have a clear competitive advantage?"
+      }
+    },
+    "metrics": {
+      "gCagr": "G: CAGR (%)",
+      "dDividendYield": "D: Dividend Yield (%)",
+      "pPeRatio": "P: PE Ratio",
+      "pProfitMargin": "P: Profit Margin (%)",
+      "rRoe": "R: ROE (%)",
+      "cCashFlow": "C: Cash Flow",
+      "gdp": "GDP",
+      "prc": "PRC"
+    },
+    "verdicts": {
+      "pass": {
+        "label": "Strong Candidate",
+        "description": "Score >= 50 in both - Strong Candidate"
+      },
+      "neutral": {
+        "label": "Watch and Monitor",
+        "description": "Mixed Results - Watch and Monitor"
+      },
+      "fail": {
+        "label": "Reject",
+        "description": "Does not meet criteria - Reject ;-;"
+      }
+    }
+  },
+  "guide": {
+    "tabs": {
+      "philosophy": "Philosophy",
+      "glossary": "Glossary",
+      "howto": "How to Use",
+      "limitations": "Limitations"
+    },
+    "qualitative": {
+      "valueChain": {
+        "title": "Value Chain",
+        "desc": "Is the business model sustainable?"
+      },
+      "dividendPolicy": {
+        "title": "Dividend Policy",
+        "desc": "Does management share profits?"
+      },
+      "management": {
+        "title": "Management",
+        "desc": "Is leadership trustworthy?"
+      },
+      "moat": {
+        "title": "Moat",
+        "desc": "Can competitors easily replicate this?"
+      }
+    },
+    "coldEye": {
+      "title": "The Cold Eye Philosophy",
+      "intro": "The \"Cold Eye\" approach emphasizes disciplined, emotionless investing based on fundamental analysis. Instead of following market hype or emotional decisions, investors should evaluate companies using quantitative metrics.",
+      "keyPrinciples": "Key Principles:",
+      "gdpScore": {
+        "title": "GDP Score",
+        "desc": "Measures wealth creation through Growth (CAGR), Dividends, and Price (PE ratio)"
+      },
+      "prcScore": {
+        "title": "PRC Score",
+        "desc": "Measures wealth sustainability through Profit margin, ROE, and Cash flow"
+      },
+      "threshold": {
+        "title": "Score > 100",
+        "desc": "Minimum threshold for investment consideration (Grade A)"
+      }
+    },
+    "sleepStrategy": {
+      "title": "The Sleep Strategy",
+      "intro": "Before analyzing any numbers, ask yourself: \"Can I sleep well at night owning this stock?\" This requires passing the qualitative gate:"
+    },
+    "opportunityCost": {
+      "title": "Opportunity Cost",
+      "desc": "Every investment decision has an opportunity cost. By investing in one stock, you forgo the returns of others. The Cold Eye method ensures you only invest in companies that meet high standards, reducing the chance of poor allocation."
+    },
+    "glossary": {
+      "cagr": {
+        "fullName": "Compound Annual Growth Rate",
+        "description": "Measures the average annual growth rate of an investment over a specified period, smoothing out volatility."
+      },
+      "peRatio": {
+        "fullName": "Price-to-Earnings",
+        "description": "Shows how much investors are willing to pay for each dollar of earnings. Lower is generally better."
+      },
+      "pegRatio": {
+        "fullName": "Price/Earnings to Growth",
+        "description": "Adjusts PE for growth. A PEG ≤ 1.0 suggests the stock may be undervalued relative to its growth rate (Zulu Principle)."
+      },
+      "dividendYield": {
+        "fullName": "Annual Dividend Return",
+        "description": "The percentage return from dividends alone. Higher yields indicate better income potential."
+      },
+      "netProfitMargin": {
+        "fullName": "Profitability Ratio",
+        "description": "Shows how much profit a company keeps from each dollar of revenue. Higher margins indicate better efficiency."
+      },
+      "roe": {
+        "fullName": "Return on Equity",
+        "description": "Measures how effectively a company uses shareholder capital to generate profits."
+      },
+      "psRatio": {
+        "fullName": "Price-to-Sales",
+        "description": "Useful for companies with low or negative earnings. Must be combined with profit margin analysis."
+      }
+    },
+    "howto": {
+      "stepByStep": "Step-by-Step Analysis",
+      "tipsTitle": "Tips for Better Analysis",
+      "findingData": {
+        "title": "Finding Financial Data",
+        "intro": "To use this analyzer effectively, you need access to company financial statements. Here's where to find them:",
+        "annualReports": {
+          "title": "Annual Reports",
+          "desc": "Visit the company's Investor Relations page. Key sections:",
+          "incomeStatement": "Income Statement: Net profit, revenue, EPS",
+          "balanceSheet": "Balance Sheet: Shareholder equity",
+          "cashFlowStatement": "Cash Flow Statement"
+        },
+        "dataProviders": {
+          "title": "Data Providers",
+          "yahooFinance": "Free key statistics",
+          "morningstar": "Detailed analysis",
+          "secEdgar": "Official US filings"
+        }
+      },
+      "steps": {
+        "1": {
+          "title": "Pass the Qualitative Gate",
+          "desc": "Verify the company meets all 4 criteria before proceeding"
+        },
+        "2": {
+          "title": "Calculate 5-Year CAGR",
+          "desc": "Compare net profit from 5 years ago to today"
+        },
+        "3": {
+          "title": "Find Current Dividend Yield",
+          "desc": "Annual dividend ÷ current stock price"
+        },
+        "4": {
+          "title": "Check PE Ratio",
+          "desc": "Current price ÷ trailing 12-month EPS"
+        },
+        "5": {
+          "title": "Evaluate Profit Margin",
+          "desc": "Net profit ÷ total revenue"
+        },
+        "6": {
+          "title": "Calculate ROE",
+          "desc": "Net income ÷ shareholder equity"
+        },
+        "7": {
+          "title": "Assess Cash Flow",
+          "desc": "Is the company profitable? Is cash flow positive?"
+        },
+        "8": {
+          "title": "Review Your Score",
+          "desc": "Total should exceed 100 for Grade A"
+        }
+      },
+      "tips": {
+        "calculator": "Use the Toolbox calculators for quick checks",
+        "compare": "Compare multiple companies in the same sector",
+        "trends": "Look at 5-10 year trends, not just current values",
+        "zulu": "Use the Zulu Principle to filter growth stocks",
+        "discount": "Check Historical PE Discount for value opportunities",
+        "logbook": "Save analyses to your Logbook"
+      }
+    },
+    "limitations": {
+      "blindSpots": {
+        "title": "Blind Spots & Limitations",
+        "techGrowth": {
+          "title": "Unfriendly to Tech & Growth Stocks",
+          "intro": "The current model may penalize high-growth companies unjustly:",
+          "dividendIssues": {
+            "title": "Dividend Issues",
+            "desc": "Great tech companies (like early Amazon or Tesla) often reinvest profits instead of paying dividends, leading to low scores."
+          },
+          "peIssues": {
+            "title": "PE Ratio Issues",
+            "desc": "Quality growth stocks often trade at PE > 30x. This model would give them only 5 points."
+          },
+          "result": "Result: You might miss an entire tech bull run and end up only with traditional sectors like Banks, Real Estate, or Manufacturing."
+        },
+        "laggingIndicators": {
+          "title": "Lagging Indicators",
+          "desc": "Compounded Growth (CAGR) and ROE depend on past data. A perfect past score doesn't guarantee future success if an industry is facing disruption (e.g., film cameras vs. digital). This model cannot evaluate future business models."
+        },
+        "simplifiedCashFlow": {
+          "title": "Simplified Cash Flow",
+          "desc": "The model gives 40 points for \"Profit + Net Inflow\". However, expanding companies may have negative cash flow due to heavy investment (R&D, factories). This isn't necessarily bad; it could be the calm before the explosion."
+        }
+      },
+      "targetAudience": {
+        "title": "Who is this for?",
+        "suitableFor": {
+          "title": "Suitable For",
+          "items": [
+            "Long-term holders seeking stability (\"Steady Happiness\")",
+            "Investors who don't want to watch the market daily",
+            "Identifying Blue Chips or Second-liners in traditional markets (e.g., Bursa Malaysia)"
+          ]
+        },
+        "notSuitableFor": {
+          "title": "Not Suitable For",
+          "items": [
+            "Aggressive investors targeting Tech Giants",
+            "High-growth sectors (Artificial Intelligence, Biotech)",
+            "Short-term trading or speculation"
+          ]
+        },
+        "source": {
+          "title": "Source: \"The Ultimate Stock Market Solution\"",
+          "desc": "Core Philosophy: Value Investing, Defense & Offense. Growth as primary, Value as secondary."
+        }
+      }
+    }
+  },
+  "logbook": {
+    "tabs": {
+      "analyses": "Stock Analyses",
+      "calculators": "Calculations"
+    },
+    "labels": {
+      "gdp": "GDP",
+      "prc": "PRC",
+      "total": "Total",
+      "cagr": "CAGR",
+      "dy": "D/Y",
+      "pe": "PE",
+      "margin": "Margin",
+      "roe": "ROE",
+      "cashFlow": "Cash Flow",
+      "dividendYield": "Dividend Yield",
+      "peRatio": "P/E Ratio",
+      "profitMargin": "Profit Margin",
+      "na": "N/A"
+    },
+    "tags": {
+      "zuluPass": "Zulu Pass",
+      "undervalued": "Undervalued"
     }
   }
 }

@@ -1,42 +1,50 @@
 import { Widget } from 'lifeforge-ui'
+import { useTranslation } from 'react-i18next'
 import COLORS from 'tailwindcss/colors'
 
 function BlindSpots() {
+  const { t } = useTranslation('apps.jiahuiiiii$stock')
+
   return (
     <Widget
       icon="tabler:alert-triangle"
       iconColor={COLORS.red[500]}
-      title="Blind Spots & Limitations"
+      title={t('guide.limitations.blindSpots.title')}
     >
       <Widget
         className="component-bg-lighter"
         icon="tabler:rocket-off"
         iconColor={COLORS.red[500]}
-        title="Unfriendly to Tech & Growth Stocks"
+        title={t('guide.limitations.blindSpots.techGrowth.title')}
       >
         <div>
           <p className="text-bg-500 mb-3">
-            The current model may penalize high-growth companies unjustly:
+            {t('guide.limitations.blindSpots.techGrowth.intro')}
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="bg-bg-50 dark:bg-bg-700/30 rounded p-3">
-              <div className="font-semibold">Dividend Issues</div>
+              <div className="font-semibold">
+                {t(
+                  'guide.limitations.blindSpots.techGrowth.dividendIssues.title'
+                )}
+              </div>
               <p className="text-bg-500">
-                Great tech companies (like early Amazon or Tesla) often reinvest
-                profits instead of paying dividends, leading to low scores.
+                {t(
+                  'guide.limitations.blindSpots.techGrowth.dividendIssues.desc'
+                )}
               </p>
             </div>
             <div className="bg-bg-50 dark:bg-bg-700/30 rounded p-3">
-              <div className="font-semibold">PE Ratio Issues</div>
+              <div className="font-semibold">
+                {t('guide.limitations.blindSpots.techGrowth.peIssues.title')}
+              </div>
               <p className="text-bg-500">
-                Quality growth stocks often trade at PE &gt; 30x. This model
-                would give them only 5 points.
+                {t('guide.limitations.blindSpots.techGrowth.peIssues.desc')}
               </p>
             </div>
           </div>
           <p className="text-bg-500 mt-3 border-l-2 border-red-500 pl-2 italic">
-            Result: You might miss an entire tech bull run and end up only with
-            traditional sectors like Banks, Real Estate, or Manufacturing.
+            {t('guide.limitations.blindSpots.techGrowth.result')}
           </p>
         </div>
       </Widget>
@@ -44,26 +52,20 @@ function BlindSpots() {
         className="component-bg-lighter"
         icon="tabler:history"
         iconColor={COLORS.orange[500]}
-        title="Lagging Indicators"
+        title={t('guide.limitations.blindSpots.laggingIndicators.title')}
       >
         <p className="text-bg-500">
-          Compounded Growth (CAGR) and ROE depend on past data. A perfect past
-          score doesn&apos;t guarantee future success if an industry is facing
-          disruption (e.g., film cameras vs. digital). This model cannot
-          evaluate future business models.
+          {t('guide.limitations.blindSpots.laggingIndicators.desc')}
         </p>
       </Widget>
       <Widget
         className="component-bg-lighter"
         icon="tabler:coins"
         iconColor={COLORS.yellow[500]}
-        title="Simplified Cash Flow"
+        title={t('guide.limitations.blindSpots.simplifiedCashFlow.title')}
       >
         <p className="text-bg-500">
-          The model gives 40 points for &quot;Profit + Net Inflow&quot;.
-          However, expanding companies may have negative cash flow due to heavy
-          investment (R&D, factories). This isn&apos;t necessarily bad; it could
-          be the calm before the explosion.
+          {t('guide.limitations.blindSpots.simplifiedCashFlow.desc')}
         </p>
       </Widget>
     </Widget>

@@ -52,7 +52,7 @@ export default function SaveCalculationModal({
       icon: 'tabler:device-floppy',
       children: 'Save'
     },
-    namespace: 'jiahuiiiii$stock'
+    namespace: 'apps.jiahuiiiii$stock'
   })
     .typesMap({
       ticker: 'text',
@@ -62,7 +62,7 @@ export default function SaveCalculationModal({
     })
     .setupFields({
       ticker: {
-        label: 'Ticker',
+        label: 'Stock Ticker',
         icon: 'tabler:currency-dollar',
         placeholder: 'e.g., AAPL',
         required: true
@@ -73,7 +73,7 @@ export default function SaveCalculationModal({
         placeholder: 'e.g., Apple Inc.'
       },
       exchange: {
-        label: 'Exchange',
+        label: 'Stock Exchange',
         icon: 'tabler:status-change',
         placeholder: 'e.g., NASDAQ'
       },

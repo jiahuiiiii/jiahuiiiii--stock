@@ -1,29 +1,27 @@
 import 'katex/dist/katex.min.css'
 import { ModuleHeader, Tabs } from 'lifeforge-ui'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import PhilosophyTab from './tabs/01_Philosophy'
 import GlossaryTab from './tabs/02_Glossaries'
 import HowToTab from './tabs/03_HowTo'
 import LimitationsTab from './tabs/04_Limitation'
 
-const TABS = {
-  philosophy: {
-    name: 'Philosophy',
-    icon: 'tabler:bulb',
-    component: PhilosophyTab
-  },
-  glossary: { name: 'Glossary', icon: 'tabler:book', component: GlossaryTab },
-  howto: { name: 'How to Use', icon: 'tabler:list-check', component: HowToTab },
-  limitations: {
-    name: 'Limitations',
-    icon: 'tabler:alert-triangle',
-    component: LimitationsTab
-  }
-} as const
+const TAB_KEYS = ['philosophy', 'glossary', 'howto', 'limitations'] as const
+
+const TAB_COMPONENTS = {
+  philosophy: { icon: 'tabler:bulb', component: PhilosophyTab },
+  glossary: { icon: 'tabler:book', component: GlossaryTab },
+  howto: { icon: 'tabler:list-check', component: HowToTab },
+  limitations: { icon: 'tabler:alert-triangle', component: LimitationsTab }
+}
 
 export default function Guide() {
-  const [activeTab, setActiveTab] = useState<keyof typeof TABS>('philosophy')
+  const { t } = useTranslation('apps.jiahuiiiii$stock')
+
+  const [activeTab, setActiveTab] =
+    useState<(typeof TAB_KEYS)[number]>('philosophy')
 
   return (
     <>
@@ -36,16 +34,16 @@ export default function Guide() {
       <div className="mb-12 space-y-6">
         <Tabs
           currentTab={activeTab}
-          enabled={Object.keys(TABS) as (keyof typeof TABS)[]}
-          items={Object.entries(TABS).map(([key, value]) => ({
+          enabled={[...TAB_KEYS]}
+          items={TAB_KEYS.map(key => ({
             id: key,
-            name: value.name,
-            icon: value.icon
+            name: t(`guide.tabs.${key}`),
+            icon: TAB_COMPONENTS[key].icon
           }))}
           onTabChange={setActiveTab}
         />
         {(() => {
-          const TabComponent = TABS[activeTab].component
+          const TabComponent = TAB_COMPONENTS[activeTab].component
 
           return <TabComponent />
         })()}

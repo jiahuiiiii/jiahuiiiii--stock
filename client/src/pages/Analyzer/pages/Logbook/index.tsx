@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { ModuleHeader, Tabs, WithQuery } from 'lifeforge-ui'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import forgeAPI from '@/utils/forgeAPI'
 
@@ -8,7 +9,24 @@ import AnalysisItem from './components/AnalysisItem'
 import CalculatorItem from './components/CalculatorItem'
 import ItemListing from './components/ItemListing'
 
+const TAB_KEYS = ['analyses', 'calculators'] as const
+
+const TAB_CONFIG = {
+  analyses: {
+    icon: 'tabler:chart-line',
+    component: AnalysisItem,
+    emptyStateId: 'savedAnalysisLog'
+  },
+  calculators: {
+    icon: 'tabler:calculator',
+    component: CalculatorItem,
+    emptyStateId: 'savedCalculatorLog'
+  }
+}
+
 export default function Logbook() {
+  const { t } = useTranslation('apps.jiahuiiiii$stock')
+
   const calculatorLogsQuery = useQuery(
     forgeAPI.analyzer.logs.calculator.list.queryOptions()
   )
@@ -17,24 +35,13 @@ export default function Logbook() {
     forgeAPI.analyzer.logs.analyzer.list.queryOptions()
   )
 
-  const tabs = {
-    analyses: {
-      name: 'Stock Analyses',
-      icon: 'tabler:chart-line',
-      component: AnalysisItem,
-      query: analyzerLogsQuery,
-      emptyStateId: 'savedAnalysisLog'
-    },
-    calculators: {
-      name: 'Calculations',
-      icon: 'tabler:calculator',
-      component: CalculatorItem,
-      query: calculatorLogsQuery,
-      emptyStateId: 'savedCalculatorLog'
-    }
+  const queries = {
+    analyses: analyzerLogsQuery,
+    calculators: calculatorLogsQuery
   }
 
-  const [activeTab, setActiveTab] = useState<keyof typeof tabs>('calculators')
+  const [activeTab, setActiveTab] =
+    useState<(typeof TAB_KEYS)[number]>('calculators')
 
   return (
     <>
@@ -47,20 +54,20 @@ export default function Logbook() {
       <Tabs
         className="mb-4"
         currentTab={activeTab}
-        enabled={Object.keys(tabs) as (keyof typeof tabs)[]}
-        items={Object.entries(tabs).map(([id, { name, icon, query }]) => ({
-          id,
-          name,
-          icon,
-          amount: query.data?.length
+        enabled={[...TAB_KEYS]}
+        items={TAB_KEYS.map(key => ({
+          id: key,
+          name: t(`logbook.tabs.${key}`),
+          icon: TAB_CONFIG[key].icon,
+          amount: queries[key].data?.length
         }))}
         onTabChange={setActiveTab}
       />
-      <WithQuery query={tabs[activeTab].query as never}>
+      <WithQuery query={queries[activeTab] as never}>
         {logs => (
           <ItemListing
-            component={tabs[activeTab].component}
-            emptyStateId={tabs[activeTab].emptyStateId}
+            component={TAB_CONFIG[activeTab].component}
+            emptyStateId={TAB_CONFIG[activeTab].emptyStateId}
             logs={logs as never}
           />
         )}

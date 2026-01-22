@@ -7,7 +7,14 @@ export const list = forge
   .description('List all analyzer logs')
   .input({})
   .callback(async ({ pb }) => {
-    return pb.getFullList.collection('analyzer_logs').sort(['-date']).execute()
+    return (
+      await pb.getFullList.collection('analyzer_logs').sort(['-date']).execute()
+    ).map(log => ({
+      ...log,
+      values: log.values as Record<string, number | string>,
+      scores: log.scores as Record<string, number>,
+      quantitative: log.quantitative as Record<string, boolean>
+    }))
   })
 
 export const create = forge

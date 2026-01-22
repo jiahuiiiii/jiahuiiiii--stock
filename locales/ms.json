@@ -60,7 +60,13 @@
     "resetDefaults": "Set Semula Lalai",
     "addTier": "Tambah Peringkat",
     "unlock": "Buka Kunci",
-    "lock": "Kunci"
+    "lock": "Kunci",
+    "proceed": "Teruskan",
+    "skip": "Langkau",
+    "back": "Kembali",
+    "viewVerdict": "Lihat Keputusan",
+    "fetchFromLogbook": "Ambil dari Buku Log",
+    "saveToLogbook": "Simpan ke Buku Log"
   },
   "modals": {
     "portfolio": {
@@ -84,7 +90,22 @@
     "resetToDefaults": {
       "title": "Set Semula ke Lalai",
       "description": "Adakah anda pasti mahu menetapkan semula semua tetapan pemarkahan kepada nilai lalai? Tindakan ini tidak boleh dibatalkan."
-    }
+    },
+    "proceedWithCaution": {
+      "title": "Teruskan dengan Berhati-hati",
+      "description": "Tidak semua kriteria kualitatif dipenuhi. Adakah anda pasti mahu meneruskan ke fasa seterusnya?"
+    },
+    "deleteAnalysis": {
+      "title": "Padam Analisis",
+      "description": "Adakah anda pasti mahu memadam analisis untuk {{ticker}}?",
+      "confirm": "Padam"
+    },
+    "deleteCalculation": {
+      "title": "Padam Pengiraan",
+      "description": "Adakah anda pasti mahu memadam pengiraan untuk {{ticker}}?",
+      "confirm": "Padam"
+    },
+    "saveCalculation": "Simpan Pengiraan"
   },
   "inputs": {
     "portfolioName": "Nama Portfolio",
@@ -116,7 +137,14 @@
     "avgPe": "Purata PE 10 Tahun",
     "peRatio": "Nisbah PE",
     "cagr": "CAGR",
-    "value": "Nilai"
+    "value": "Nilai",
+    "profitMargin": "Margin Keuntungan (%)",
+    "roe": "ROE (%)",
+    "cashFlow": "Aliran Tunai",
+    "dividendYield": "Hasil Dividen (%)",
+    "tenYearAvgPe": "PE Purata 10 Tahun (untuk semakan Diskaun PE)",
+    "stockTicker": "Ticker Saham",
+    "stockExchange": "Bursa Saham"
   },
   "placeholders": {
     "portfolioName": "Portfolio Saya",
@@ -155,6 +183,9 @@
       "createFailed": "Gagal menambah pegangan",
       "updateFailed": "Gagal mengemaskini pegangan",
       "removeFailed": "Gagal membuang pegangan"
+    },
+    "analyzer": {
+      "saveFailed": "Gagal menyimpan log. Sila cuba lagi."
     }
   },
   "common": {
@@ -268,6 +299,290 @@
       "profitOutflow": "Untung + Aliran Keluar Bersih",
       "lossInflow": "Rugi + Aliran Masuk Bersih",
       "lossOutflow": "Rugi + Aliran Keluar Bersih"
+    }
+  },
+  "analyzer": {
+    "phase": "Fasa",
+    "score": "Skor:",
+    "pass": "Lulus",
+    "fail": "Gagal",
+    "total": "Jumlah",
+    "points": "Mata",
+    "zuluPass": "Zulu Lulus (PEG ≤ 1.0)",
+    "undervalued": "Undervalued (PE ≥25% diskaun)",
+    "phases": {
+      "sleepStrategyGate": {
+        "name": "Pintu Strategi Tidur",
+        "description": "Semak faktor kualitatif ini (disyorkan). Anda boleh teruskan walaupun tidak semua kriteria dipenuhi."
+      },
+      "quantitativeEntry": {
+        "name": "Kemasukan Data Kuantitatif",
+        "description": "Masukkan metrik kewangan utama. Jika data tersedia dalam buku log anda, anda boleh isi secara automatik di sini."
+      },
+      "verdict": {
+        "name": "Keputusan",
+        "description": ""
+      }
+    },
+    "qualitative": {
+      "valueChain": {
+        "label": "Rantaian Nilai",
+        "description": "Adakah syarikat mempunyai aliran keperluan → Hasil → Keuntungan yang stabil?"
+      },
+      "dividendPolicy": {
+        "label": "Polisi Dividen",
+        "description": "Adakah terdapat sejarah pembayaran dividen yang konsisten?"
+      },
+      "management": {
+        "label": "Integriti Pengurusan",
+        "description": "Adakah pengurusan jujur? (Tiada skandal perakaunan)"
+      },
+      "moat": {
+        "label": "Parit Persaingan",
+        "description": "Adakah syarikat mempunyai kelebihan persaingan yang jelas?"
+      }
+    },
+    "metrics": {
+      "gCagr": "G: CAGR (%)",
+      "dDividendYield": "D: Hasil Dividen (%)",
+      "pPeRatio": "P: Nisbah PE",
+      "pProfitMargin": "P: Margin Keuntungan (%)",
+      "rRoe": "R: ROE (%)",
+      "cCashFlow": "C: Aliran Tunai",
+      "gdp": "GDP",
+      "prc": "PRC"
+    },
+    "verdicts": {
+      "pass": {
+        "label": "Calon Kuat",
+        "description": "Skor >= 50 dalam kedua-dua - Calon Kuat"
+      },
+      "neutral": {
+        "label": "Pantau dan Perhatikan",
+        "description": "Keputusan Bercampur - Pantau dan Perhatikan"
+      },
+      "fail": {
+        "label": "Tolak",
+        "description": "Tidak memenuhi kriteria - Tolak ;-;"
+      }
+    }
+  },
+  "guide": {
+    "tabs": {
+      "philosophy": "Falsafah",
+      "glossary": "Glosari",
+      "howto": "Cara Guna",
+      "limitations": "Had"
+    },
+    "qualitative": {
+      "valueChain": {
+        "title": "Rantaian Nilai",
+        "desc": "Adakah model perniagaan boleh bertahan?"
+      },
+      "dividendPolicy": {
+        "title": "Polisi Dividen",
+        "desc": "Adakah pengurusan berkongsi keuntungan?"
+      },
+      "management": {
+        "title": "Pengurusan",
+        "desc": "Adakah kepimpinan boleh dipercayai?"
+      },
+      "moat": {
+        "title": "Parit",
+        "desc": "Bolehkah pesaing meniru dengan mudah?"
+      }
+    },
+    "coldEye": {
+      "title": "Falsafah Cold Eye",
+      "intro": "Pendekatan \"Cold Eye\" menekankan pelaburan berdisiplin dan tanpa emosi berdasarkan analisis fundamental. Daripada mengikuti gembar-gembur pasaran atau keputusan emosi, pelabur harus menilai syarikat menggunakan metrik kuantitatif.",
+      "keyPrinciples": "Prinsip Utama:",
+      "gdpScore": {
+        "title": "Skor GDP",
+        "desc": "Mengukur penciptaan kekayaan melalui Pertumbuhan (CAGR), Dividen, dan Harga (nisbah PE)"
+      },
+      "prcScore": {
+        "title": "Skor PRC",
+        "desc": "Mengukur kelestarian kekayaan melalui Margin keuntungan, ROE, dan Aliran tunai"
+      },
+      "threshold": {
+        "title": "Skor > 100",
+        "desc": "Ambang minimum untuk pertimbangan pelaburan (Gred A)"
+      }
+    },
+    "sleepStrategy": {
+      "title": "Strategi Tidur",
+      "intro": "Sebelum menganalisis sebarang nombor, tanya diri anda: \"Bolehkah saya tidur nyenyak memiliki saham ini?\" Ini memerlukan melepasi pintu kualitatif:"
+    },
+    "opportunityCost": {
+      "title": "Kos Peluang",
+      "desc": "Setiap keputusan pelaburan mempunyai kos peluang. Dengan melabur dalam satu saham, anda melepaskan pulangan yang lain. Kaedah Cold Eye memastikan anda hanya melabur dalam syarikat yang memenuhi standard tinggi, mengurangkan peluang peruntukan yang lemah."
+    },
+    "glossary": {
+      "cagr": {
+        "fullName": "Kadar Pertumbuhan Tahunan Kompaun",
+        "description": "Mengukur kadar pertumbuhan tahunan purata pelaburan dalam tempoh tertentu, melicinkan turun naik."
+      },
+      "peRatio": {
+        "fullName": "Nisbah Harga-kepada-Pendapatan",
+        "description": "Menunjukkan berapa pelabur sanggup bayar untuk setiap dolar pendapatan. Lebih rendah biasanya lebih baik."
+      },
+      "pegRatio": {
+        "fullName": "Nisbah Harga/Pendapatan kepada Pertumbuhan",
+        "description": "Melaraskan PE untuk pertumbuhan. PEG ≤ 1.0 menunjukkan saham mungkin undervalued berbanding kadar pertumbuhannya (Prinsip Zulu)."
+      },
+      "dividendYield": {
+        "fullName": "Pulangan Dividen Tahunan",
+        "description": "Pulangan peratusan dari dividen sahaja. Hasil yang lebih tinggi menunjukkan potensi pendapatan yang lebih baik."
+      },
+      "netProfitMargin": {
+        "fullName": "Nisbah Keberuntungan",
+        "description": "Menunjukkan berapa banyak keuntungan yang disimpan syarikat dari setiap dolar hasil. Margin yang lebih tinggi menunjukkan kecekapan yang lebih baik."
+      },
+      "roe": {
+        "fullName": "Pulangan atas Ekuiti",
+        "description": "Mengukur sejauh mana syarikat menggunakan modal pemegang saham untuk menjana keuntungan."
+      },
+      "psRatio": {
+        "fullName": "Nisbah Harga-kepada-Jualan",
+        "description": "Berguna untuk syarikat dengan pendapatan rendah atau negatif. Mesti digabungkan dengan analisis margin keuntungan."
+      }
+    },
+    "howto": {
+      "stepByStep": "Analisis Langkah demi Langkah",
+      "tipsTitle": "Tips untuk Analisis Lebih Baik",
+      "findingData": {
+        "title": "Mencari Data Kewangan",
+        "intro": "Untuk menggunakan penganalisis ini dengan berkesan, anda memerlukan akses kepada penyata kewangan syarikat. Berikut tempat untuk mencarinya:",
+        "annualReports": {
+          "title": "Laporan Tahunan",
+          "desc": "Lawati halaman Hubungan Pelabur syarikat. Bahagian utama:",
+          "incomeStatement": "Penyata Pendapatan: Keuntungan bersih, hasil, EPS",
+          "balanceSheet": "Lembaran Imbangan: Ekuiti pemegang saham",
+          "cashFlowStatement": "Penyata Aliran Tunai"
+        },
+        "dataProviders": {
+          "title": "Pembekal Data",
+          "yahooFinance": "Statistik utama percuma",
+          "morningstar": "Analisis terperinci",
+          "secEdgar": "Pemfailan rasmi AS"
+        }
+      },
+      "steps": {
+        "1": {
+          "title": "Lepasi Pintu Kualitatif",
+          "desc": "Sahkan syarikat memenuhi semua 4 kriteria sebelum meneruskan"
+        },
+        "2": {
+          "title": "Kira CAGR 5 Tahun",
+          "desc": "Bandingkan keuntungan bersih dari 5 tahun lalu dengan hari ini"
+        },
+        "3": {
+          "title": "Cari Hasil Dividen Semasa",
+          "desc": "Dividen tahunan ÷ harga saham semasa"
+        },
+        "4": {
+          "title": "Semak Nisbah PE",
+          "desc": "Harga semasa ÷ EPS 12 bulan terakhir"
+        },
+        "5": {
+          "title": "Nilai Margin Keuntungan",
+          "desc": "Keuntungan bersih ÷ jumlah hasil"
+        },
+        "6": {
+          "title": "Kira ROE",
+          "desc": "Pendapatan bersih ÷ ekuiti pemegang saham"
+        },
+        "7": {
+          "title": "Nilai Aliran Tunai",
+          "desc": "Adakah syarikat untung? Adakah aliran tunai positif?"
+        },
+        "8": {
+          "title": "Semak Skor Anda",
+          "desc": "Jumlah harus melebihi 100 untuk Gred A"
+        }
+      },
+      "tips": {
+        "calculator": "Gunakan kalkulator Toolbox untuk semakan pantas",
+        "compare": "Bandingkan beberapa syarikat dalam sektor yang sama",
+        "trends": "Lihat trend 5-10 tahun, bukan hanya nilai semasa",
+        "zulu": "Gunakan Prinsip Zulu untuk menapis saham pertumbuhan",
+        "discount": "Semak Diskaun PE Sejarah untuk peluang nilai",
+        "logbook": "Simpan analisis ke Buku Log anda"
+      }
+    },
+    "limitations": {
+      "blindSpots": {
+        "title": "Blind Spots & Had",
+        "techGrowth": {
+          "title": "Tidak Mesra Saham Teknologi & Pertumbuhan",
+          "intro": "Model semasa mungkin menghukum syarikat pertumbuhan tinggi secara tidak adil:",
+          "dividendIssues": {
+            "title": "Isu Dividen",
+            "desc": "Syarikat teknologi hebat (seperti Amazon atau Tesla awal) sering melabur semula keuntungan dan bukannya membayar dividen, menyebabkan skor rendah."
+          },
+          "peIssues": {
+            "title": "Isu Nisbah PE",
+            "desc": "Saham pertumbuhan berkualiti sering berdagang pada PE > 30x. Model ini hanya akan memberi mereka 5 mata."
+          },
+          "result": "Hasil: Anda mungkin terlepas keseluruhan bull run teknologi dan akhirnya hanya memegang sektor tradisional seperti Bank, Hartanah, atau Pembuatan."
+        },
+        "laggingIndicators": {
+          "title": "Penunjuk Tertinggal",
+          "desc": "Pertumbuhan Kompaun (CAGR) dan ROE bergantung pada data lepas. Skor lepas yang sempurna tidak menjamin kejayaan masa depan jika industri menghadapi gangguan (contoh: kamera filem vs. digital). Model ini tidak dapat menilai model perniagaan masa depan."
+        },
+        "simplifiedCashFlow": {
+          "title": "Aliran Tunai Ringkas",
+          "desc": "Model memberi 40 mata untuk \"Untung + Aliran Masuk Bersih\". Walau bagaimanapun, syarikat yang berkembang mungkin mempunyai aliran tunai negatif kerana pelaburan besar (R&D, kilang). Ini tidak semestinya buruk; ia boleh jadi ketenangan sebelum ledakan."
+        }
+      },
+      "targetAudience": {
+        "title": "Untuk siapa ini?",
+        "suitableFor": {
+          "title": "Sesuai Untuk",
+          "items": [
+            "Pemegang jangka panjang yang mencari kestabilan (\"Kebahagiaan Mantap\")",
+            "Pelabur yang tidak mahu memantau pasaran setiap hari",
+            "Mengenal pasti Blue Chips atau Second-liners di pasaran tradisional (contoh: Bursa Malaysia)"
+          ]
+        },
+        "notSuitableFor": {
+          "title": "Tidak Sesuai Untuk",
+          "items": [
+            "Pelabur agresif yang menyasarkan Gergasi Teknologi",
+            "Sektor pertumbuhan tinggi (Kecerdasan Buatan, Bioteknologi)",
+            "Perdagangan atau spekulasi jangka pendek"
+          ]
+        },
+        "source": {
+          "title": "Sumber: \"The Ultimate Stock Market Solution\"",
+          "desc": "Falsafah Teras: Pelaburan Nilai, Pertahanan & Serangan. Pertumbuhan sebagai utama, Nilai sebagai sekunder."
+        }
+      }
+    }
+  },
+  "logbook": {
+    "tabs": {
+      "analyses": "Analisis Saham",
+      "calculators": "Pengiraan"
+    },
+    "labels": {
+      "gdp": "GDP",
+      "prc": "PRC",
+      "total": "Jumlah",
+      "cagr": "CAGR",
+      "dy": "Hasil Dividen",
+      "pe": "Nisbah PE",
+      "margin": "Margin",
+      "roe": "ROE",
+      "cashFlow": "Aliran Tunai",
+      "dividendYield": "Hasil Dividen",
+      "peRatio": "Nisbah P/E",
+      "profitMargin": "Margin Keuntungan",
+      "na": "N/A"
+    },
+    "tags": {
+      "zuluPass": "Zulu Lulus",
+      "undervalued": "Undervalued"
     }
   }
 }

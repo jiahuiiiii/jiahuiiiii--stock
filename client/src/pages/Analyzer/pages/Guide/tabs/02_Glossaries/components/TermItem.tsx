@@ -7,19 +7,17 @@ function TermItem({
   term,
   description,
   latex,
-  color
+  color,
+  icon
 }: {
   term: string
   description: string
   latex: string
   color: keyof typeof COLORS
+  icon: string
 }) {
   return (
-    <Widget
-      icon={`tabler:letter-${term[0].toLowerCase()}`}
-      iconColor={COLORS[color][500]}
-      title={term}
-    >
+    <Widget icon={icon} iconColor={COLORS[color][500]} title={term}>
       <p className="text-bg-500">{description}</p>
       <Formula latex={latex} />
     </Widget>

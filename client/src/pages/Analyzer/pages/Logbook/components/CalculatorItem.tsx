@@ -8,6 +8,7 @@ import {
   TagChip,
   useModalStore
 } from 'lifeforge-ui'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import type { InferOutput } from 'shared'
 
@@ -17,7 +18,19 @@ type CalculatorLogItem = InferOutput<
   typeof forgeAPI.analyzer.logs.calculator.list
 >[number]
 
+const METRIC_KEYS = ['cagr', 'dy', 'pe', 'margin', 'roe'] as const
+
+const METRIC_CONFIG = {
+  cagr: { labelKey: 'cagr', suffix: '%' },
+  dy: { labelKey: 'dividendYield', suffix: '%' },
+  pe: { labelKey: 'peRatio', suffix: 'x' },
+  margin: { labelKey: 'profitMargin', suffix: '%' },
+  roe: { labelKey: 'roe', suffix: '%' }
+}
+
 function CalculatorItem({ log }: { log: CalculatorLogItem }) {
+  const { t } = useTranslation('apps.jiahuiiiii$stock')
+
   const { open } = useModalStore()
 
   const queryClient = useQueryClient()
@@ -35,7 +48,7 @@ function CalculatorItem({ log }: { log: CalculatorLogItem }) {
         },
         onError: error => {
           console.error('Error deleting calculator log:', error)
-          toast.error('Failed to delete calculator log.')
+          toast.error(t('errors.calculator.deleteFailed'))
         }
       })
   )
@@ -46,7 +59,6 @@ function CalculatorItem({ log }: { log: CalculatorLogItem }) {
         <div>
           <div className="text-xl font-semibold">{log.ticker}</div>
           {log.name && <div className="text-custom-500">{log.name}</div>}
-
           <div className="text-bg-500 mt-2 text-xs">
             {dayjs(log.date).format('YYYY-MM-DD')}
           </div>
@@ -61,12 +73,14 @@ function CalculatorItem({ log }: { log: CalculatorLogItem }) {
             <ContextMenuItem
               dangerous
               icon="tabler:trash"
-              label="Delete"
+              label={t('modals.deleteCalculation.confirm')}
               onClick={() => {
                 open(ConfirmationModal, {
-                  title: 'Delete Calculation',
-                  description: `Are you sure you want to delete this calculation for ${log.ticker}?`,
-                  confirmButtonText: 'Delete',
+                  title: t('modals.deleteCalculation.title'),
+                  description: t('modals.deleteCalculation.description', {
+                    ticker: log.ticker
+                  }),
+                  confirmButtonText: t('modals.deleteCalculation.confirm'),
                   onConfirm: async () => {
                     await deleteMutation.mutateAsync({})
                   }
@@ -77,24 +91,20 @@ function CalculatorItem({ log }: { log: CalculatorLogItem }) {
         </div>
       </div>
       <div className="space-y-1">
-        {(
-          [
-            { key: 'cagr', label: 'CAGR', suffix: '%' },
-            { key: 'dy', label: 'Dividend Yield', suffix: '%' },
-            { key: 'pe', label: 'P/E Ratio', suffix: 'x' },
-            { key: 'margin', label: 'Profit Margin', suffix: '%' },
-            { key: 'roe', label: 'ROE', suffix: '%' }
-          ] as const
-        ).map(({ key, label, suffix }) => (
+        {METRIC_KEYS.map(key => (
           <div key={key} className="flex justify-between">
-            <span className="text-bg-500">{label}</span>
+            <span className="text-bg-500">
+              {t(`logbook.labels.${METRIC_CONFIG[key].labelKey}`)}
+            </span>
             {log.values_and_scores[key]?.value ? (
               <span>
                 {log.values_and_scores[key].value.toFixed(2)}
-                {suffix}
+                {METRIC_CONFIG[key].suffix}
               </span>
             ) : (
-              <span className="text-bg-400 dark:text-bg-600">N/A</span>
+              <span className="text-bg-400 dark:text-bg-600">
+                {t('logbook.labels.na')}
+              </span>
             )}
           </div>
         ))}
